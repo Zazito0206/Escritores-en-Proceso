@@ -1,0 +1,89 @@
+/* --- BASE GENERAL --- */
+body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #f6f6f6;
+    margin: 0;
+    color: #222;
+}
+
+/* --- NAV --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    background: #fff;
+    height: 60px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo-img {
+    height: 80px;
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 24px;
+}
+
+.nav-links a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #ff6f3c;
+}
+
+/* --- SECCIÓN SOBRE NOSOTROS --- */
+.sobre-nosotros {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 30px;
+    background: #fff;
+    border: 2px solid #ff6f3c;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.sobre-nosotros h1 {
+    font-size: 2.6rem;
+    margin-bottom: 10px;
+    color: #ff6f3c;
+    text-align: center;
+}
+
+.sobre-nosotros h2 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    color: #222;
+    text-align: center;
+    font-weight: 500;
+}
+
+.sobre-nosotros p {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* --- RESPONSIVIDAD BÁSICA --- */
+@media (max-width: 768px) {
+    .sobre-nosotros {
+        padding: 20px;
+        font-size: 1rem;
+    }
+
+    .nav-links {
+        gap: 16px;
+    }
+
+    .logo-img {
+        height: 60px;
+    }
+}

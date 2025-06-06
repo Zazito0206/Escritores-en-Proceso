@@ -1,0 +1,442 @@
+/* --- NAV --- */
+body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #f6f6f6;
+    margin: 0;
+    color: #222;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    background: #fff;
+    height: 60px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo-img {
+    height: 80px;
+    width: auto;
+}
+
+nav .nav-links {
+    display: flex;
+    gap: 24px;
+}
+
+nav .nav-links a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+nav .nav-links a:hover {
+    color: #ff6f3c;
+}
+
+nav .search-bar {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 24px;
+    padding: 4px 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+nav .search-bar input {
+    border: none;
+    outline: none;
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 24px;
+    flex: 1;
+}
+
+nav .search-bar button {
+    background: #ff6f3c;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 24px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+nav .search-bar button:hover {
+    background: #e65c23;
+}
+
+
+/* --- CARRUSEL LIBROS --- */
+.libros-carrusel {
+    margin: 40px auto;
+    max-width: 1200px;
+    padding: 0 10px;
+}
+
+.libros-carrusel h3 {
+    font-size: 2rem;
+    color: #222;
+    margin-bottom: 15px;
+}
+
+/* Contenedor principal del carrusel */
+.contenedor-principal {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* Flechas */
+.flecha-izquierda,
+.flecha-derecha {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 2px solid var(--rojo);
+    background-color: rgba(0, 0, 0, 0.3);
+    font-size: 30px;
+    width: 40px;
+    height: 60px;
+    color: #fff;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.2s ease;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flecha-izquierda:hover,
+.flecha-derecha:hover {
+    background: rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0 10px var(--rojo);
+}
+
+.flecha-izquierda {
+    left: 0;
+}
+
+.flecha-derecha {
+    right: 0;
+}
+
+/* Contenedor scrollable */
+.contenedor-carousel {
+    width: 100%;
+    padding: 20px 0;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    background-color: rgba(0, 0, 0, 0.05);
+    border: 3px solid var(--rojo);
+    box-shadow: 0 0 20px var(--rojo);
+    border-radius: 10px;
+}
+
+/* Flex horizontal */
+.carousel {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 25px;
+}
+
+/* Tarjeta libro */
+.libro {
+    min-width: 18%;      /* menos ancho */
+    max-width: 12%;      /* fijo para uniformidad */
+    height: 420px;       /* más alto para formato portada */
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.1);
+    padding: 12px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none; /* quita subrayado en enlaces */
+    color: inherit; /* mantiene color del texto */
+}
+
+.libro:hover {
+    transform: scale(1.1);
+    z-index: 5;
+}
+
+.libro img {
+    width: 103%;
+    height: 345px;       /* imagen ocupa casi todo el alto */
+    object-fit: cover;   /* para que la portada rellene bien */
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+
+.libro h4 {
+    font-size: 1rem;
+    color: #222;
+    margin: 0 0 6px;
+    font-weight: 700;
+    text-decoration: none; /* evitar subrayado */
+}
+
+.libro p {
+    font-size: 1rem;
+    color: #ff6f3c;
+    margin: 0;
+    text-decoration: none; /* evitar subrayado */
+}
+
+/* Indicadores puntos */
+.indicadores {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+    gap: 8px;
+}
+
+.indicadores button {
+    background: #ccc;
+    height: 6px;
+    width: 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.indicadores button:hover,
+.indicadores button.activo {
+    background: var(--rojo);
+}
+
+
+
+/* Responsividad */
+@media (max-width: 992px) {
+    .libro {
+        min-width: 28%;
+    }
+}
+
+@media (max-width: 600px) {
+    .libro {
+        min-width: 45%;
+    }
+    .flecha-izquierda, .flecha-derecha {
+        font-size: 24px;
+        width: 30px;
+        height: 45px;
+    }
+}
+
+/* --- RESPONSIVE GENERAL SIN MODIFICAR EXISTENTE --- */
+
+/* NAV: ajustar elementos en pantallas pequeñas */
+@media (max-width: 768px) {
+    nav {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .logo-img {
+        height: 60px;
+        margin-bottom: 8px;
+    }
+
+    nav .nav-links {
+        gap: 12px;
+    }
+
+    nav .nav-links a {
+        font-size: 0.9rem;
+    }
+
+    nav .search-bar {
+        width: 100%;
+        max-width: none;
+        padding: 6px 10px;
+        box-sizing: border-box;
+    }
+
+    nav .search-bar input {
+        font-size: 0.9rem;
+        padding: 6px 8px;
+    }
+
+    nav .search-bar button {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+}
+
+
+/* CARRUSEL: mejorar scroll y tamaño en pantallas pequeñas */
+@media (max-width: 768px) {
+    .libros-carrusel {
+        padding: 0 5px;
+    }
+
+    .contenedor-carousel {
+        border-width: 2px;
+        border-radius: 8px;
+        padding: 15px 0;
+    }
+
+    .carousel {
+        gap: 16px;
+    }
+
+    .libro {
+        min-width: 25%;
+        max-width: 25%;
+        height: auto;
+    }
+
+    .libro img {
+        height: auto;
+        max-height: 260px;
+        width: 100%;
+    }
+
+    .libro h4 {
+        font-size: 0.9rem;
+    }
+
+    .libro p {
+        font-size: 0.9rem;
+    }
+}
+
+/* En móviles muy pequeños */
+@media (max-width: 480px) {
+    nav {
+        padding: 8px;
+    }
+
+    .logo-img {
+        height: 50px;
+        margin-bottom: 6px;
+    }
+
+    nav .nav-links {
+        gap: 12px;
+    }
+
+    nav .nav-links a {
+        font-size: 0.85rem;
+    }
+
+    nav .search-bar input {
+        font-size: 0.85rem;
+        padding: 5px 6px;
+    }
+
+    nav .search-bar button {
+        padding: 5px 10px;
+        font-size: 0.85rem;
+    }
+
+    .libro {
+        min-width: 30%;
+        max-width: 30%;
+        height: auto;
+    }
+
+    .libro img {
+        max-height: 200px;
+    }
+
+    .flecha-izquierda, .flecha-derecha {
+        font-size: 20px;
+        width: 28px;
+        height: 40px;
+    }
+}
+
+
+/* --- aviso temporal --- */
+
+.beta-banner {
+  background-color: #fff4e5;
+  color: #663300;
+  border: 1px solid #ffb84d;
+  padding: 16px 20px;
+  text-align: center;
+  font-size: 1rem;
+  position: fixed;
+  top: 60px; /* justo debajo del nav */
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 2px 8px rgba(255, 180, 0, 0.3);
+}
+
+.beta-banner p {
+  margin: 0;
+  line-height: 1.4;
+  max-width: 800px;
+}
+
+.beta-banner a {
+  color: #ff6f3c;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.beta-banner button {
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  color: #663300;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .beta-banner {
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    top: 55px; /* ajusta si el nav cambia de tamaño */
+  }
+
+  .beta-banner p {
+    max-width: 100%;
+  }
+
+  .beta-banner button {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .beta-banner {
+    font-size: 0.85rem;
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .beta-banner button {
+    font-size: 1.2rem;
+  }
+}
+
+

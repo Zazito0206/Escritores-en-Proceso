@@ -1,0 +1,17 @@
+   
+   
+   <!-- Codigo de busqueda-->
+   <form id="form-busqueda" class="search-bar">
+       <input id="busqueda-input" type="text" placeholder="Buscar por título o autor..." autocomplete="off">
+       <button type="submit">Buscar</button>
+    </form>
+
+
+    <!-- nav original -->
+         <div class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="#">Historias</a>
+        <a href="#">Géneros</a>
+        <a href="sobre-nosotros/index.html">Sobre Nosotros</a>
+        <a href="contacto.html">Contacto</a>
+    </div>

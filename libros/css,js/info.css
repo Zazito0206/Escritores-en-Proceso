@@ -1,0 +1,151 @@
+body {
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: #f6f6f6;
+  margin: 0;
+  color: #222;
+}
+
+/* NAV BAR */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  background: #fff;
+  height: 60px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.logo-img {
+    height: 80px;
+    width: auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 16px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.nav-links a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ff6f3c;
+}
+
+/* CONTENIDO LIBRO */
+.libro-info {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border: 2px solid #ff6f3c;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.libro-info h1 {
+  font-size: 2.6rem;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #ff6f3c;
+}
+
+.info-container {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.cover {
+  max-width: 300px;
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.datos {
+  flex: 1;
+}
+
+.author, .fecha, .descripcion, .generos {
+  margin-bottom: 16px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.generos {
+  font-size: 1.05rem;
+}
+
+.descripcion {
+  font-weight: normal;
+  line-height: 1.6;
+  color: #444;
+}
+
+/* CAPÍTULOS */
+.capitulos-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.capitulo-btn {
+  background: #ff6f3c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.capitulo-btn:hover {
+  background: #e05e2a;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .info-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cover {
+    max-width: 100%;
+  }
+
+  .datos {
+    width: 100%;
+  }
+
+  .libro-info h1 {
+    font-size: 2rem;
+  }
+
+  .capitulo-btn {
+    font-size: 0.95rem;
+    padding: 8px 14px;
+  }
+
+  .author, .fecha, .descripcion, .generos {
+    font-size: 1rem;
+  }
+}

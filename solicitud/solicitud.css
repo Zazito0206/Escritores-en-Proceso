@@ -1,0 +1,104 @@
+/* --- BASE GENERAL --- */
+body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #f6f6f6;
+    margin: 0;
+    color: #222;
+}
+
+/* --- NAV --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    background: #fff;
+    height: 60px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo-img {
+    height: 80px;
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 24px;
+}
+
+.nav-links a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #ff6f3c;
+}
+
+/* --- FORMULARIO DE ENVÍO DE LIBRO --- */
+.formulario-libro {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 30px;
+    background: #fff;
+    border: 2px solid #ff6f3c;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-libro h1 {
+    text-align: center;
+    color: #ff6f3c;
+    margin-bottom: 30px;
+}
+
+.formulario-libro label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.formulario-libro input,
+.formulario-libro textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.formulario-libro button {
+    background-color: #ff6f3c;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+}
+
+.formulario-libro button:hover {
+    background-color: #e65c29;
+}
+
+/* --- RESPONSIVIDAD --- */
+@media (max-width: 768px) {
+    .nav-links {
+        gap: 16px;
+    }
+
+    .logo-img {
+        height: 60px;
+    }
+
+    .formulario-libro {
+        padding: 20px;
+    }
+}
