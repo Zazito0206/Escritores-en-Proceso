@@ -33,6 +33,7 @@ if (banner && closeBtn) {
     let librosGenero = [];
     let indiceActual = 0;
 
+    // parte original en eliminado temporal
     fetch('books.json')
       .then(res => res.json())
       .then(data => {
@@ -49,7 +50,7 @@ if (banner && closeBtn) {
           link.innerHTML = `
             <img src="${libro.cover}" alt="Portada de ${libro.title}" />
             <h4>${libro.title}</h4>
-            <p>Autor: ${libro.author}</p>
+            
           `;
           carousel.appendChild(link);
         });
