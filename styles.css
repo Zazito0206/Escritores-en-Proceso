@@ -74,13 +74,13 @@ nav .search-bar button:hover {
 
 /* --- CARRUSEL LIBROS --- */
 .libros-carrusel {
-    margin: 40px auto;
+    margin: 30px auto;
     max-width: 1200px;
     padding: 0 10px;
 }
 
 .libros-carrusel h3 {
-    font-size: 2rem;
+    font-size: 1.4rem;
     color: #222;
     margin-bottom: 15px;
 }
@@ -133,7 +133,7 @@ nav .search-bar button:hover {
     padding: 20px 0;
     overflow-x: auto;
     scroll-behavior: smooth;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(255, 255, 255, 0.05);
     border: 3px solid var(--rojo);
     box-shadow: 0 0 20px var(--rojo);
     border-radius: 10px;
@@ -143,17 +143,17 @@ nav .search-bar button:hover {
 .carousel {
     display: flex;
     flex-wrap: nowrap;
-    gap: 25px;
+    gap: 0px;
 }
 
 /* Tarjeta libro */
 .libro {
-    min-width: 18%;      /* menos ancho */
+    min-width: 12%;      /* menos ancho */
     max-width: 12%;      /* fijo para uniformidad */
-    height: 420px;       /* más alto para formato portada */
-    background: #fff;
-    border-radius: 6px;
-    box-shadow: 3px 3px 8px rgba(0,0,0,0.1);
+    height: 270px;       /* más alto para formato portada */
+    background: transparent;
+    border-radius: 1px;
+    box-shadow: 3px 3px 8px rgba(255, 255, 255, 0.1);
     padding: 12px;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -172,7 +172,7 @@ nav .search-bar button:hover {
 
 .libro img {
     width: 103%;
-    height: 345px;       /* imagen ocupa casi todo el alto */
+    height: 250px;       /* imagen ocupa casi todo el alto */
     object-fit: cover;   /* para que la portada rellene bien */
     margin-bottom: 10px;
     border-radius: 4px;
