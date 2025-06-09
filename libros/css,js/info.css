@@ -16,6 +16,11 @@ nav {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   flex-wrap: nowrap;
   overflow-x: auto;
+  overflow: hidden
+}
+
+#toggle-dark-mode {
+  display: none;
 }
 
 .logo-img {
