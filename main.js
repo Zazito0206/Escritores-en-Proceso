@@ -77,10 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Función que crea un carrusel para un género
   function crearCarrusel(genero) {
-    const carousel = document.getElementById(carousel-${genero});
-    const indicadores = document.getElementById(indicadores-${genero});
-    const flechaIzquierda = document.getElementById(izquierda-${genero});
-    const flechaDerecha = document.getElementById(derecha-${genero});
+    const carousel = document.getElementById(`carousel-${genero}`);
+    const indicadores = document.getElementById(`indicadores-${genero}`);
+    const flechaIzquierda = document.getElementById(`izquierda-${genero}`);
+    const flechaDerecha = document.getElementById(`derecha-${genero}`);
 
     let librosGenero = [];
     let indiceActual = 0;
@@ -96,14 +96,14 @@ document.addEventListener('DOMContentLoaded', () => {
           link.setAttribute('title', libro.title);
 
           const slug = slugify(libro.title);
-          link.href = /libros/${slug}/info/index.html;
+          link.href = `/libros/${slug}/info/index.html`;
 
-          link.innerHTML = 
+          link.innerHTML = `
             <img src="${libro.cover}" alt="Portada de ${libro.title}" />
             <h4>${libro.title}</h4>
             <span class="estado-libro">${libro.estado === 'completo' ? 'Completo' : 'En progreso'}</span>
             ${libro.patrocinado ? '<div class="badge-logo"><img src="/images/logo-patrocinado.png" alt="Libro patrocinado" /></div>' : ''}
-          ;
+          `;
 
           carousel.appendChild(link);
         });
