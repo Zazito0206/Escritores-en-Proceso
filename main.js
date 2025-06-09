@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const banner = document.getElementById('beta-banner');
   const closeBtn = document.getElementById('close-banner');
   const storageKey = 'betaBannerClosedAt';
-  const hideDuration = 1 * 60 * 60 * 1000g; // 1 hora en milisegundos
+  const hideDuration = 1 * 60 * 60 * 1000; // 1 hora en milisegundos
 
   // Animación para mostrar (fadeIn)
   function fadeIn(element) {
