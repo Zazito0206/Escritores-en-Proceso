@@ -1,0 +1,211 @@
+/* --- BASE GENERAL --- */
+body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #f6f6f6;
+    margin: 0;
+    color: #222;
+}
+
+/* --- NAV --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    background: #fff;
+    height: 60px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo-img {
+    height: 80px;
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 24px;
+}
+
+.nav-links a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #ff6f3c;
+}
+
+/* --- SECCIÓN CONTACTO --- */
+.contacto-main {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 30px;
+    background: #fff;
+    border: 2px solid #ff6f3c;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.contacto-main h1 {
+    font-size: 2.6rem;
+    margin-bottom: 10px;
+    color: #ff6f3c;
+}
+
+.contacto-main h2 {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    color: #222;
+    font-weight: 500;
+}
+
+.contacto-main p {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* --- LISTA DE CONTACTO --- */
+.contact-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.contact-links a {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+}
+
+.contact-links a.whatsapp {
+    background-color: #25d366;
+}
+
+.contact-links a.whatsapp:hover {
+    background-color: #1ebe5d;
+    box-shadow: 0 4px 12px #1ebe5d;
+}
+
+.contact-links a.facebook {
+    background-color: #1877f2;
+}
+
+.contact-links a.facebook:hover {
+    background-color: #135fcc;
+    box-shadow: 0 4px 12px #135fcc;
+}
+
+.contact-links a.email {
+    background-color: #ea4335;
+}
+
+.contact-links a.email:hover {
+    background-color: #c23327;
+    box-shadow: 0 4px 12px #c23327;
+}
+
+/* --- RESPONSIVIDAD BÁSICA --- */
+@media (max-width: 768px) {
+    .contacto-main {
+        padding: 20px;
+        font-size: 1rem;
+    }
+
+    .nav-links {
+        gap: 16px;
+    }
+
+    .logo-img {
+        height: 60px;
+    }
+
+    .contact-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* --- MODO OSCURO --- */
+body.dark-mode {
+    background: #121212;
+    color: #eee;
+}
+
+body.dark-mode nav {
+    background: #1f1f1f;
+    box-shadow: 0 2px 8px rgba(255, 111, 60, 0.3);
+}
+
+body.dark-mode .nav-links a {
+    color: #ddd;
+}
+
+body.dark-mode .nav-links a:hover {
+    color: #ff6f3c;
+}
+
+body.dark-mode .contacto-main {
+    background: #1e1e1e;
+    border-color: #ff6f3c;
+    box-shadow: 0 4px 20px rgba(255, 111, 60, 0.3);
+    color: #ddd;
+}
+
+body.dark-mode .contacto-main h1 {
+    color: #ff6f3c;
+}
+
+body.dark-mode .contacto-main h2 {
+    color: #eee;
+}
+
+body.dark-mode .contacto-main p {
+    color: #ccc;
+}
+
+body.dark-mode .contact-links a {
+    color: #222;
+    box-shadow: 0 2px 8px rgba(255, 111, 60, 0.7);
+}
+
+body.dark-mode .contact-links a.whatsapp {
+    background-color: #25d366;
+}
+
+body.dark-mode .contact-links a.whatsapp:hover {
+    background-color: #1ebe5d;
+    box-shadow: 0 4px 12px #1ebe5d;
+}
+
+body.dark-mode .contact-links a.facebook {
+    background-color: #1877f2;
+}
+
+body.dark-mode .contact-links a.facebook:hover {
+    background-color: #135fcc;
+    box-shadow: 0 4px 12px #135fcc;
+}
+
+body.dark-mode .contact-links a.email {
+    background-color: #ea4335;
+}
+
+body.dark-mode .contact-links a.email:hover {
+    background-color: #c23327;
+    box-shadow: 0 4px 12px #c23327;
+}
