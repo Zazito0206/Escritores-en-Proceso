@@ -10,6 +10,49 @@ function cargarCapitulo(jsonArchivo, capituloID) {
           <h1>Capítulo ${capituloID.replace("cap", "")}: ${capitulo.titulo}</h1>
           <p>${capitulo.contenido}</p>
         `;
+
+        // --- INICIO: LÓGICA DE VISTAS ÚNICAS ---
+        // Obtener slug del libro desde la ruta JSON, ej: "/libros/mi-libro/..."
+        const slugMatch = jsonArchivo.match(/\/libros\/([^\/]+)\//);
+        const slug = slugMatch ? slugMatch[1] : "default";
+
+        // Clave para marcar vista única de este capítulo
+        const vistaKey = `visto_${slug}_${capituloID}`;
+
+        // Clave para contador local de vistas
+        const countKey = `vistas_${slug}_${capituloID}`;
+
+        // Incrementa vistas local
+        function getVistas() {
+          return parseInt(localStorage.getItem(countKey)) || 0;
+        }
+        function incrementarVistas() {
+          let vistas = getVistas();
+          vistas++;
+          localStorage.setItem(countKey, vistas);
+          return vistas;
+        }
+
+        // Solo cuenta la vista si no está guardada
+        if (!localStorage.getItem(vistaKey)) {
+          localStorage.setItem(vistaKey, 'true');
+          incrementarVistas();
+        }
+
+        // Mostrar contador de vistas del capítulo (opcional)
+        let contadorEl = document.getElementById('contador-vistas');
+        if (!contadorEl) {
+          contadorEl = document.createElement('p');
+          contadorEl.id = 'contador-vistas';
+          contadorEl.style.marginTop = '10px';
+          contadorEl.style.fontWeight = 'bold';
+          contadorEl.style.color = '#ff6f3c';
+          contenedor.appendChild(contadorEl);
+        }
+        contadorEl.textContent = `Vistas únicas de este capítulo: ${getVistas()}`;
+        // --- FIN: LÓGICA DE VISTAS ÚNICAS ---
+
+
         // Agregar contenedor para los botones
         const nav = document.createElement("div");
         nav.id = "navegacion-capitulos";
@@ -18,8 +61,6 @@ function cargarCapitulo(jsonArchivo, capituloID) {
 
         // Lógica de navegación
         const capNum = parseInt(capituloID.replace("cap", ""));
-        const slugMatch = jsonArchivo.match(/\/libros\/([^\/]+)\//);
-        const slug = slugMatch ? slugMatch[1] : "default";
 
         const crearBoton = (texto, href) => {
           const a = document.createElement("a");
@@ -51,6 +92,7 @@ function cargarCapitulo(jsonArchivo, capituloID) {
           .catch(() => {
             nav.appendChild(crearBoton("Regresar", `/libros/${slug}/info/index.html`));
           });
+
       } else {
         contenedor.innerHTML = `<p>Capítulo no encontrado.</p>`;
       }
