@@ -34,6 +34,13 @@ nav .nav-links a {
     transition: color 0.3s ease;
 }
 
+nav .nav-links a.activo {
+  color: #ff6f3c; /* mismo color del hover para coherencia */
+  font-weight: 700;
+  border-bottom: 2px solid #ff6f3c;
+  padding-bottom: 2px;
+}
+
 nav .nav-links a:hover {
     color: #ff6f3c;
 }
@@ -84,6 +91,55 @@ nav .search-bar button:hover {
     color: #222;
     margin-bottom: 15px;
 }
+
+.subtitulo-carrusel {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: -10px;
+  margin-bottom: 15px;
+  font-style: italic;
+}
+
+/* Estado del libro completo o en progreso */
+.estado-libro {
+  position: absolute;
+  top: 12px;
+  right: 8px;
+  background-color: #ff6f3c; /* naranja */
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 12px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  user-select: none;
+  pointer-events: none; /* para que no interfiera con clicks */
+  white-space: nowrap;
+  z-index: 10;
+}
+
+/* Logo patrocinador */
+.badge-logo {
+  position: absolute;
+  top: 18px;       /* arriba */
+  left: 10px;      /* izquierda */
+  background-color: transparent;  /* transparente, sin fondo */
+  border-radius: 50%;              /* si querés podés quitar el border-radius si no quieres círculo */
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none;  /* eliminé sombra, si la querés ponela */
+  z-index: 10;
+}
+
+.badge-logo img {
+  width: 50px !important;
+  height: 50px !important;
+  object-fit: contain;
+}
+
 
 /* Contenedor principal del carrusel */
 .contenedor-principal {
@@ -163,6 +219,7 @@ nav .search-bar button:hover {
     text-align: center;
     text-decoration: none; /* quita subrayado en enlaces */
     color: inherit; /* mantiene color del texto */
+    position: relative; /* para el estado del libro */
 }
 
 .libro:hover {
