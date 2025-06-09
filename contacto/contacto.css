@@ -77,46 +77,47 @@ nav {
     padding: 0;
     margin: 0;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 30px;
+    gap: 20px;
 }
 
 .contact-links a {
+    display: inline-block;
     color: #fff;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border-radius: 8px;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    min-width: 200px;
 }
 
+/* Colores por plataforma */
 .contact-links a.whatsapp {
     background-color: #25d366;
 }
-
 .contact-links a.whatsapp:hover {
     background-color: #1ebe5d;
-    box-shadow: 0 4px 12px #1ebe5d;
+    transform: translateY(-2px);
 }
 
 .contact-links a.facebook {
     background-color: #1877f2;
 }
-
 .contact-links a.facebook:hover {
     background-color: #135fcc;
-    box-shadow: 0 4px 12px #135fcc;
+    transform: translateY(-2px);
 }
 
 .contact-links a.email {
     background-color: #ea4335;
 }
-
 .contact-links a.email:hover {
     background-color: #c23327;
-    box-shadow: 0 4px 12px #c23327;
+    transform: translateY(-2px);
 }
 
 /* --- RESPONSIVIDAD BÁSICA --- */
@@ -136,7 +137,11 @@ nav {
 
     .contact-links {
         flex-direction: column;
-        gap: 15px;
+        align-items: center;
+    }
+
+    .contact-links a {
+        width: 90%;
     }
 }
 
@@ -179,33 +184,6 @@ body.dark-mode .contacto-main p {
 }
 
 body.dark-mode .contact-links a {
-    color: #222;
-    box-shadow: 0 2px 8px rgba(255, 111, 60, 0.7);
-}
-
-body.dark-mode .contact-links a.whatsapp {
-    background-color: #25d366;
-}
-
-body.dark-mode .contact-links a.whatsapp:hover {
-    background-color: #1ebe5d;
-    box-shadow: 0 4px 12px #1ebe5d;
-}
-
-body.dark-mode .contact-links a.facebook {
-    background-color: #1877f2;
-}
-
-body.dark-mode .contact-links a.facebook:hover {
-    background-color: #135fcc;
-    box-shadow: 0 4px 12px #135fcc;
-}
-
-body.dark-mode .contact-links a.email {
-    background-color: #ea4335;
-}
-
-body.dark-mode .contact-links a.email:hover {
-    background-color: #c23327;
-    box-shadow: 0 4px 12px #c23327;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }
