@@ -21,10 +21,27 @@ async function cargarLibro() {
     document.getElementById('title').textContent = libro.title;
     document.getElementById('author').textContent = `Autor(es): ${libro.author}`;
     document.getElementById('fecha').textContent = `Fecha de lanzamiento: ${libro.fecha}`;
+    const estado = document.createElement('div');
+    estado.className = 'estado-libro';
+    estado.textContent = libro.estado === 'completo' ? 'Libro completo' : 'En progreso';
+    document.getElementById('fecha').insertAdjacentElement('afterend', estado);
     document.getElementById('generos').textContent = `Géneros: ${libro.generos.join(', ')}`;
     document.getElementById('descripcion').textContent = libro.descripcion;
-    document.getElementById('cover').src = `/${libro.cover}`;
-    document.getElementById('cover').alt = `Portada de ${libro.title}`;
+    const coverEl = document.getElementById('cover');
+    coverEl.src = `/${libro.cover}`;
+    coverEl.alt = `Portada de ${libro.title}`;
+
+    // Si el libro es patrocinado, agregar logo en la esquina
+    if (libro.patrocinado) {
+      const badge = document.createElement('div');
+      badge.className = 'badge-logo';
+      badge.innerHTML = `<img src="/images/logo-patrocinado.png" alt="Patrocinado" />`;
+      const wrapper = document.createElement('div');
+      wrapper.style.position = 'relative';
+      coverEl.parentNode.insertBefore(wrapper, coverEl);
+      wrapper.appendChild(coverEl);
+      wrapper.appendChild(badge);
+    }
 
     // Crear botones para capítulos
     const container = document.getElementById('capitulos-container');
