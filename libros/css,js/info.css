@@ -43,6 +43,36 @@ nav {
   color: #ff6f3c;
 }
 
+/* estado del libro, completo o en progreso */
+.estado-libro {
+  margin-top: 8px;
+  font-weight: bold;
+  color: #ff6f3c;
+}
+
+
+/* Logo patrocinador */
+.badge-logo {
+  position: absolute;
+  top: 16px;       /* arriba */
+  left: 16px;      /* izquierda */
+  background-color: transparent;  /* transparente, sin fondo */
+  border-radius: 50%;              /* si querés podés quitar el border-radius si no quieres círculo */
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: none;  /* eliminé sombra, si la querés ponela */
+  z-index: 10;
+}
+
+.badge-logo img {
+  width: 80px !important;
+  height: 80px !important;
+  object-fit: contain;
+}
+
 /* CONTENIDO LIBRO */
 .libro-info {
   max-width: 900px;
