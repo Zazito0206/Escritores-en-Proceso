@@ -1,9 +1,25 @@
+/* VARIABLES PARA COLORES */
+:root {
+  --color-fondo: #f6f6f6;
+  --color-texto: #222;
+  --color-nav-fondo: #fff;
+  --color-nav-texto: #000;
+  --rojo: #ff6f3c;
+  --rojo-hover: #e65c23;
+  --color-banner-fondo: #fff4e5;
+  --color-banner-texto: #663300;
+  --color-banner-borde: #ffb84d;
+  --badge-fondo: transparent;
+  --badge-sombra: none;
+  --color-libro-estado-bg: #ff6f3c;
+}
+
 /* --- NAV --- */
 body {
     font-family: 'Montserrat', Arial, sans-serif;
-    background: #f6f6f6;
+    background: var(--color-fondo);
     margin: 0;
-    color: #222;
+    color: var(--color-texto);
 }
 
 nav {
@@ -11,7 +27,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 0 16px;
-    background: #fff;
+    background: var(--color-nav-fondo);
     height: 60px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -27,7 +43,7 @@ nav .nav-links {
 }
 
 nav .nav-links a {
-    color: #000;
+    color: var(--color-nav-texto);
     text-decoration: none;
     font-weight: 600;
     font-size: 1rem;
@@ -35,20 +51,20 @@ nav .nav-links a {
 }
 
 nav .nav-links a.activo {
-  color: #ff6f3c; /* mismo color del hover para coherencia */
+  color: var(--rojo); /* mismo color del hover para coherencia */
   font-weight: 700;
-  border-bottom: 2px solid #ff6f3c;
+  border-bottom: 2px solid var(--rojo);
   padding-bottom: 2px;
 }
 
 nav .nav-links a:hover {
-    color: #ff6f3c;
+    color: var(--rojo);
 }
 
 nav .search-bar {
     display: flex;
     align-items: center;
-    background: #fff;
+    background: var(--color-nav-fondo);
     border-radius: 24px;
     padding: 4px 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -61,10 +77,12 @@ nav .search-bar input {
     font-size: 1rem;
     border-radius: 24px;
     flex: 1;
+    background: var(--color-fondo);
+    color: var(--color-texto);
 }
 
 nav .search-bar button {
-    background: #ff6f3c;
+    background: var(--rojo);
     color: #fff;
     border: none;
     padding: 8px 16px;
@@ -75,9 +93,31 @@ nav .search-bar button {
 }
 
 nav .search-bar button:hover {
-    background: #e65c23;
+    background: var(--rojo-hover);
 }
 
+/* Botón modo oscuro */
+#toggle-dark-mode {
+  background-color: #ff6f3c; /* color naranja que usas */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 2px 6px rgba(255, 111, 60, 0.5);
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+#toggle-dark-mode:hover {
+  background-color: #e65c23; /* naranja más oscuro en hover */
+}
+
+#toggle-dark-mode:focus {
+  outline: 2px solid #ff6f3c;
+  outline-offset: 2px;
+}
 
 /* --- CARRUSEL LIBROS --- */
 .libros-carrusel {
@@ -88,7 +128,7 @@ nav .search-bar button:hover {
 
 .libros-carrusel h3 {
     font-size: 1.4rem;
-    color: #222;
+    color: var(--color-texto);
     margin-bottom: 15px;
 }
 
@@ -105,7 +145,7 @@ nav .search-bar button:hover {
   position: absolute;
   top: 12px;
   right: 8px;
-  background-color: #ff6f3c; /* naranja */
+  background-color: var(--color-libro-estado-bg);
   color: white;
   font-size: 0.75rem;
   font-weight: 700;
@@ -113,7 +153,7 @@ nav .search-bar button:hover {
   border-radius: 12px;
   box-shadow: 0 0 5px rgba(0,0,0,0.3);
   user-select: none;
-  pointer-events: none; /* para que no interfiera con clicks */
+  pointer-events: none;
   white-space: nowrap;
   z-index: 10;
 }
@@ -121,25 +161,25 @@ nav .search-bar button:hover {
 /* Logo patrocinador */
 .badge-logo {
   position: absolute;
-  top: 18px;       /* arriba */
-  left: 10px;      /* izquierda */
+  top: 18px;
+  left: 10px;
   background-color: transparent;  /* transparente, sin fondo */
-  border-radius: 50%;              /* si querés podés quitar el border-radius si no quieres círculo */
+  border-radius: 50%;              /* círculo */
   width: 32px;
   height: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: none;  /* eliminé sombra, si la querés ponela */
+  box-shadow: none;  /* sin sombra */
   z-index: 10;
 }
+
 
 .badge-logo img {
   width: 50px !important;
   height: 50px !important;
   object-fit: contain;
 }
-
 
 /* Contenedor principal del carrusel */
 .contenedor-principal {
@@ -190,10 +230,11 @@ nav .search-bar button:hover {
     overflow-x: auto;
     scroll-behavior: smooth;
     background-color: rgba(255, 255, 255, 0.05);
-    border: 3px solid var(--rojo);
-    box-shadow: 0 0 20px var(--rojo);
+    /* border: 3px solid var(--rojo); */
+    /* box-shadow: 0 0 20px var(--rojo); */
     border-radius: 10px;
 }
+
 
 /* Flex horizontal */
 .carousel {
@@ -204,9 +245,9 @@ nav .search-bar button:hover {
 
 /* Tarjeta libro */
 .libro {
-    min-width: 12%;      /* menos ancho */
-    max-width: 12%;      /* fijo para uniformidad */
-    height: 270px;       /* más alto para formato portada */
+    min-width: 12%;
+    max-width: 12%;
+    height: 270px;
     background: transparent;
     border-radius: 1px;
     box-shadow: 3px 3px 8px rgba(255, 255, 255, 0.1);
@@ -217,9 +258,9 @@ nav .search-bar button:hover {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    text-decoration: none; /* quita subrayado en enlaces */
-    color: inherit; /* mantiene color del texto */
-    position: relative; /* para el estado del libro */
+    text-decoration: none;
+    color: inherit;
+    position: relative;
 }
 
 .libro:hover {
@@ -229,26 +270,25 @@ nav .search-bar button:hover {
 
 .libro img {
     width: 103%;
-    height: 250px;       /* imagen ocupa casi todo el alto */
-    object-fit: cover;   /* para que la portada rellene bien */
+    height: 250px;
+    object-fit: cover;
     margin-bottom: 10px;
     border-radius: 4px;
 }
 
-
 .libro h4 {
     font-size: 1rem;
-    color: #222;
+    color: var(--color-texto);
     margin: 0 0 6px;
     font-weight: 700;
-    text-decoration: none; /* evitar subrayado */
+    text-decoration: none;
 }
 
 .libro p {
     font-size: 1rem;
-    color: #ff6f3c;
+    color: var(--rojo);
     margin: 0;
-    text-decoration: none; /* evitar subrayado */
+    text-decoration: none;
 }
 
 /* Indicadores puntos */
@@ -274,8 +314,6 @@ nav .search-bar button:hover {
     background: var(--rojo);
 }
 
-
-
 /* Responsividad */
 @media (max-width: 992px) {
     .libro {
@@ -293,8 +331,6 @@ nav .search-bar button:hover {
         height: 45px;
     }
 }
-
-/* --- RESPONSIVE GENERAL SIN MODIFICAR EXISTENTE --- */
 
 /* NAV: ajustar elementos en pantallas pequeñas */
 @media (max-width: 768px) {
@@ -335,7 +371,6 @@ nav .search-bar button:hover {
         font-size: 0.9rem;
     }
 }
-
 
 /* CARRUSEL: mejorar scroll y tamaño en pantallas pequeñas */
 @media (max-width: 768px) {
@@ -420,18 +455,16 @@ nav .search-bar button:hover {
     }
 }
 
-
 /* --- aviso temporal --- */
-
 .beta-banner {
-  background-color: #fff4e5;
-  color: #663300;
-  border: 1px solid #ffb84d;
+  background-color: var(--color-banner-fondo);
+  color: var(--color-banner-texto);
+  border: 1px solid var(--color-banner-borde);
   padding: 16px 20px;
   text-align: center;
   font-size: 1rem;
   position: fixed;
-  top: 60px; /* justo debajo del nav */
+  top: 60px;
   left: 0;
   right: 0;
   z-index: 1000;
@@ -449,7 +482,7 @@ nav .search-bar button:hover {
 }
 
 .beta-banner a {
-  color: #ff6f3c;
+  color: var(--rojo);
   font-weight: 600;
   text-decoration: underline;
 }
@@ -458,42 +491,22 @@ nav .search-bar button:hover {
   background: transparent;
   border: none;
   font-size: 1.8rem;
-  color: #663300;
+  color: var(--rojo);
   cursor: pointer;
-  padding: 0;
-  line-height: 1;
 }
 
-/* RESPONSIVE */
-
-@media (max-width: 768px) {
-  .beta-banner {
-    flex-direction: column;
-    gap: 10px;
-    padding: 12px 16px;
-    font-size: 0.9rem;
-    top: 55px; /* ajusta si el nav cambia de tamaño */
-  }
-
-  .beta-banner p {
-    max-width: 100%;
-  }
-
-  .beta-banner button {
-    font-size: 1.4rem;
-  }
+/* --- modo oscuro --- */
+body.dark-mode {
+  --color-fondo: #121212;
+  --color-texto: #ddd;
+  --color-nav-fondo: #1c1c1c;
+  --color-nav-texto: #ddd;
+  --rojo: #ff4c1c;
+  --rojo-hover: #e04315;
+  --color-banner-fondo: #3a2e22;
+  --color-banner-texto: #f2d6b3;
+  --color-banner-borde: #ff4c1c;
+  --badge-fondo: rgba(255, 76, 28, 0.1);
+  --badge-sombra: 0 0 6px rgba(255, 76, 28, 0.8);
+  --color-libro-estado-bg: #ff4c1c;
 }
-
-@media (max-width: 480px) {
-  .beta-banner {
-    font-size: 0.85rem;
-    padding: 10px 12px;
-    gap: 8px;
-  }
-
-  .beta-banner button {
-    font-size: 1.2rem;
-  }
-}
-
-
