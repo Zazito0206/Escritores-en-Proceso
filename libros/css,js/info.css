@@ -46,8 +46,9 @@ nav {
 /* estado del libro, completo o en progreso */
 .estado-libro {
   margin-top: 8px;
-  font-weight: bold;
-  color: #ff6f3c;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.1rem;
 }
 
 
