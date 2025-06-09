@@ -325,11 +325,13 @@ nav .search-bar button:hover {
     .libro {
         min-width: 45%;
     }
-    .flecha-izquierda, .flecha-derecha {
-        font-size: 24px;
-        width: 30px;
-        height: 45px;
-    }
+    @media (max-width: 600px) {
+  .flecha-izquierda,
+  .flecha-derecha {
+    display: none;
+  }
+}
+
 }
 
 /* NAV: ajustar elementos en pantallas pequeñas */
@@ -448,11 +450,10 @@ nav .search-bar button:hover {
         max-height: 200px;
     }
 
-    .flecha-izquierda, .flecha-derecha {
-        font-size: 20px;
-        width: 28px;
-        height: 40px;
-    }
+    .flecha-izquierda,
+    .flecha-derecha {
+    display: none;
+  }
 }
 
 /* --- aviso temporal --- */
