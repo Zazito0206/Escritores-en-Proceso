@@ -1,17 +1,64 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // js para aviso temporal
-
+  // --- Banner con cierre temporal cada 12 horas ---
   const banner = document.getElementById('beta-banner');
-const closeBtn = document.getElementById('close-banner');
+  const closeBtn = document.getElementById('close-banner');
+  const storageKey = 'betaBannerClosedAt';
+  const hideDuration = 12 * 60 * 60 * 1000; // 12 horas en ms
 
-if (banner && closeBtn) {
-  closeBtn.addEventListener('click', () => {
-    banner.style.display = 'none';
-  });
-}
-  // fin del js para aviso temporal
+  function fadeIn(element) {
+    element.style.opacity = 0;
+    element.style.display = 'block';
+    let last = +new Date();
+    const tick = function() {
+      element.style.opacity = +element.style.opacity + (new Date() - last) / 400;
+      last = +new Date();
+      if (+element.style.opacity < 1) {
+        (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+      }
+    };
+    tick();
+  }
 
+  function fadeOut(element, callback) {
+    element.style.opacity = 1;
+    let last = +new Date();
+    const tick = function() {
+      element.style.opacity = +element.style.opacity - (new Date() - last) / 400;
+      last = +new Date();
+      if (+element.style.opacity > 0) {
+        (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+      } else {
+        element.style.display = 'none';
+        if (callback) callback();
+      }
+    };
+    tick();
+  }
+
+  function shouldShowBanner() {
+    const closedAt = localStorage.getItem(storageKey);
+    if (!closedAt) return true;
+    const closedTime = parseInt(closedAt, 10);
+    return (Date.now() - closedTime) > hideDuration;
+  }
+
+  if (banner && closeBtn) {
+    if (shouldShowBanner()) {
+      fadeIn(banner);
+    } else {
+      banner.style.display = 'none';
+    }
+
+    closeBtn.addEventListener('click', () => {
+      fadeOut(banner, () => {
+        localStorage.setItem(storageKey, Date.now().toString());
+      });
+    });
+  }
+  // --- Fin banner ---
+
+  // Función para crear slugs URL friendly
   function slugify(text) {
     return text.toString().toLowerCase()
       .normalize('NFD')                      // Descompone acentos en caracteres base + diacríticos
@@ -33,7 +80,6 @@ if (banner && closeBtn) {
     let librosGenero = [];
     let indiceActual = 0;
 
-    // parte original en eliminado temporal
     fetch('books.json')
       .then(res => res.json())
       .then(data => {
@@ -50,8 +96,10 @@ if (banner && closeBtn) {
           link.innerHTML = `
             <img src="${libro.cover}" alt="Portada de ${libro.title}" />
             <h4>${libro.title}</h4>
-            
+            <span class="estado-libro">${libro.estado === 'completo' ? 'Completo' : 'En progreso'}</span>
+            ${libro.patrocinado ? '<div class="badge-logo"><img src="/images/logo-patrocinado.png" alt="Libro patrocinado" /></div>' : ''}
           `;
+
           carousel.appendChild(link);
         });
 
@@ -107,4 +155,5 @@ if (banner && closeBtn) {
   // Crear carruseles para los géneros deseados
   crearCarrusel('recientes');
   crearCarrusel('populares');
+
 });
