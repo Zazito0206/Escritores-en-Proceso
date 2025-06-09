@@ -4,8 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const banner = document.getElementById('beta-banner');
   const closeBtn = document.getElementById('close-banner');
   const storageKey = 'betaBannerClosedAt';
-  const hideDuration = 12 * 60 * 60 * 1000; // 12 horas en ms
+  const hideDuration = 12 * 60 * 60 * 1000; // 12 horas en milisegundos
 
+  // Animación para mostrar (fadeIn)
   function fadeIn(element) {
     element.style.opacity = 0;
     element.style.display = 'block';
@@ -20,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tick();
   }
 
+  // Animación para ocultar (fadeOut)
   function fadeOut(element, callback) {
     element.style.opacity = 1;
     let last = +new Date();
@@ -36,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tick();
   }
 
+  // Determina si debe mostrarse el banner (si pasaron >12h desde cierre)
   function shouldShowBanner() {
     const closedAt = localStorage.getItem(storageKey);
     if (!closedAt) return true;
@@ -58,7 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   // --- Fin banner ---
 
-  // Función para crear slugs URL friendly
+
+  // Función para crear slugs URL friendly para rutas
   function slugify(text) {
     return text.toString().toLowerCase()
       .normalize('NFD')                      // Descompone acentos en caracteres base + diacríticos
@@ -70,12 +74,13 @@ document.addEventListener('DOMContentLoaded', () => {
       .trim();
   }
 
+
   // Función que crea un carrusel para un género
   function crearCarrusel(genero) {
-    const carousel = document.getElementById(`carousel-${genero}`);
-    const indicadores = document.getElementById(`indicadores-${genero}`);
-    const flechaIzquierda = document.getElementById(`izquierda-${genero}`);
-    const flechaDerecha = document.getElementById(`derecha-${genero}`);
+    const carousel = document.getElementById(carousel-${genero});
+    const indicadores = document.getElementById(indicadores-${genero});
+    const flechaIzquierda = document.getElementById(izquierda-${genero});
+    const flechaDerecha = document.getElementById(derecha-${genero});
 
     let librosGenero = [];
     let indiceActual = 0;
@@ -91,14 +96,14 @@ document.addEventListener('DOMContentLoaded', () => {
           link.setAttribute('title', libro.title);
 
           const slug = slugify(libro.title);
-          link.href = `/libros/${slug}/info/index.html`;
+          link.href = /libros/${slug}/info/index.html;
 
-          link.innerHTML = `
+          link.innerHTML = 
             <img src="${libro.cover}" alt="Portada de ${libro.title}" />
             <h4>${libro.title}</h4>
             <span class="estado-libro">${libro.estado === 'completo' ? 'Completo' : 'En progreso'}</span>
             ${libro.patrocinado ? '<div class="badge-logo"><img src="/images/logo-patrocinado.png" alt="Libro patrocinado" /></div>' : ''}
-          `;
+          ;
 
           carousel.appendChild(link);
         });
@@ -107,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         actualizarIndicador();
       });
 
+    // Eventos flechas para mover el carrusel
     flechaDerecha.addEventListener('click', () => {
       moverCarrusel('siguiente');
     });
@@ -115,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
       moverCarrusel('anterior');
     });
 
+    // Función para mover el scroll del carrusel y actualizar indicador
     function moverCarrusel(direccion) {
       const anchoContenedor = carousel.parentElement.offsetWidth;
       if (direccion === 'siguiente') {
@@ -127,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
       actualizarIndicador();
     }
 
+    // Crea botones indicadores según páginas (5 libros por página)
     function crearIndicadores() {
       indicadores.innerHTML = '';
       const items = carousel.querySelectorAll('.libro');
@@ -143,6 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    // Actualiza el indicador activo
     function actualizarIndicador() {
       const botones = indicadores.querySelectorAll('button');
       botones.forEach(btn => btn.classList.remove('activo'));
@@ -152,35 +161,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+
+  // --- Toggle modo oscuro ---
+
   const toggleBtn = document.getElementById('toggle-dark-mode');
-const body = document.body;
+  const body = document.body;
 
-// Cargar preferencia guardada o usar la preferencia del sistema
-const savedMode = localStorage.getItem('dark-mode');
-if (savedMode === 'enabled') {
-  body.classList.add('dark-mode');
-} else if (!savedMode) {
-  // Si no hay guardado, usar preferencia del sistema operativo
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  // Carga modo guardado o usa preferencia sistema
+  const savedMode = localStorage.getItem('dark-mode');
+  if (savedMode === 'enabled') {
     body.classList.add('dark-mode');
-    localStorage.setItem('dark-mode', 'enabled');
+  } else if (!savedMode) {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      body.classList.add('dark-mode');
+      localStorage.setItem('dark-mode', 'enabled');
+    }
   }
-}
 
-// Función para alternar modo oscuro
-function toggleDarkMode() {
-  body.classList.toggle('dark-mode');
-  if (body.classList.contains('dark-mode')) {
-    localStorage.setItem('dark-mode', 'enabled');
-  } else {
-    localStorage.setItem('dark-mode', 'disabled');
+  // Cambia el modo oscuro
+  function toggleDarkMode() {
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) {
+      localStorage.setItem('dark-mode', 'enabled');
+    } else {
+      localStorage.setItem('dark-mode', 'disabled');
+    }
   }
-}
 
-toggleBtn.addEventListener('click', toggleDarkMode);
+  toggleBtn.addEventListener('click', toggleDarkMode);
 
 
-  // Crear carruseles para los géneros deseados
+  // Crear carruseles para géneros que quieras mostrar
   crearCarrusel('recientes');
   crearCarrusel('populares');
 
