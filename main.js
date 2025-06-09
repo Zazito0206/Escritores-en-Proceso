@@ -152,6 +152,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  const toggleBtn = document.getElementById('toggle-dark-mode');
+const body = document.body;
+
+// Cargar preferencia guardada o usar la preferencia del sistema
+const savedMode = localStorage.getItem('dark-mode');
+if (savedMode === 'enabled') {
+  body.classList.add('dark-mode');
+} else if (!savedMode) {
+  // Si no hay guardado, usar preferencia del sistema operativo
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    body.classList.add('dark-mode');
+    localStorage.setItem('dark-mode', 'enabled');
+  }
+}
+
+// Función para alternar modo oscuro
+function toggleDarkMode() {
+  body.classList.toggle('dark-mode');
+  if (body.classList.contains('dark-mode')) {
+    localStorage.setItem('dark-mode', 'enabled');
+  } else {
+    localStorage.setItem('dark-mode', 'disabled');
+  }
+}
+
+toggleBtn.addEventListener('click', toggleDarkMode);
+
+
   // Crear carruseles para los géneros deseados
   crearCarrusel('recientes');
   crearCarrusel('populares');
