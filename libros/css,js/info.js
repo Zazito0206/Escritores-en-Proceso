@@ -25,29 +25,6 @@ async function cargarLibro() {
     estado.className = 'estado-libro';
     estado.textContent = libro.estado === 'completo' ? 'Libro completo' : 'En progreso';
     document.getElementById('fecha').insertAdjacentElement('afterend', estado);
- 
-
-    // Insertar estado debajo de fecha
-    document.getElementById('fecha').insertAdjacentElement('afterend', estado);
-
-    // --- Aquí insertamos total de vistas justo después del estado ---
-    let totalVistas = 0;
-    for (let i = 1; i <= libro.capitulos; i++) {
-      const countKey = `vistas_${slug}_cap${i}`;
-      totalVistas += parseInt(localStorage.getItem(countKey)) || 0;
-    }
-
-    const vistasEl = document.createElement('div');
-    vistasEl.className = 'estado-libro';
-    vistasEl.style.marginTop = '5px';
-    vistasEl.textContent = `Vistas: ${totalVistas}`;
-    estado.insertAdjacentElement('afterend', vistasEl);
-    vistasEl.style.marginTop = '12px';  // 12px de espacio arriba
-
-
-
-    // Insertar justo después del estado
-    estado.insertAdjacentElement('afterend', vistasEl);
 
     document.getElementById('generos').textContent = `Géneros: ${libro.generos.join(', ')}`;
     document.getElementById('descripcion').textContent = libro.descripcion;
@@ -86,3 +63,31 @@ async function cargarLibro() {
 }
 
 cargarLibro();
+
+// Código modo oscuro
+const toggleBtn = document.getElementById('toggle-dark-mode');
+const body = document.body;
+
+// Aplicar modo oscuro según preferencia guardada o sistema
+const savedMode = localStorage.getItem('dark-mode');
+if (savedMode === 'enabled') {
+  body.classList.add('dark-mode');
+} else if (!savedMode) {
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    body.classList.add('dark-mode');
+    localStorage.setItem('dark-mode', 'enabled');
+  }
+}
+
+function toggleDarkMode() {
+  body.classList.toggle('dark-mode');
+  if (body.classList.contains('dark-mode')) {
+    localStorage.setItem('dark-mode', 'enabled');
+  } else {
+    localStorage.setItem('dark-mode', 'disabled');
+  }
+}
+
+if (toggleBtn) {
+  toggleBtn.addEventListener('click', toggleDarkMode);
+}
