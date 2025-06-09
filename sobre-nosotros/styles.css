@@ -87,3 +87,41 @@ nav {
         height: 60px;
     }
 }
+
+/* --- MODO OSCURO --- */
+body.dark-mode {
+    background: #121212;
+    color: #eee;
+}
+
+body.dark-mode nav {
+    background: #1f1f1f;
+    box-shadow: 0 2px 8px rgba(255, 111, 60, 0.3);
+}
+
+body.dark-mode .nav-links a {
+    color: #ddd;
+}
+
+body.dark-mode .nav-links a:hover {
+    color: #ff6f3c;
+}
+
+body.dark-mode .sobre-nosotros {
+    background: #1e1e1e;
+    border-color: #ff6f3c;
+    box-shadow: 0 4px 20px rgba(255, 111, 60, 0.3);
+    color: #ddd;
+}
+
+body.dark-mode .sobre-nosotros h1 {
+    color: #ff6f3c;
+}
+
+body.dark-mode .sobre-nosotros h2 {
+    color: #eee;
+}
+
+body.dark-mode .sobre-nosotros p {
+    color: #ccc;
+}
