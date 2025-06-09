@@ -5,11 +5,13 @@
       "slug": "sombras-en-el-vacio",
       "author": "Amilcar Quintanilla",
       "cover": "images/sombras-en-el-vacio.jpg",
-      "genres": ["recientes", "populares"],
+      "genres": ["recientes"],
       "generos": ["terror psicológico", "suspenso", "misterio"],
       "fecha": "01-02-2025",
       "descripcion": "Despertó en un lugar que no existe... pero del que no puede escapar.\n\nSin recuerdos. Sin rostro.\nSolo una casa flotando en el vacío, pasillos que cambian, espejos que no reflejan la verdad...\ny sombras que lo conocen mejor que él mismo.\n\nA medida que se adentra en este laberinto de su mente, lo que parecía un sueño se convierte en una trampa.\nLas voces susurran. Las puertas se cierran.\nY cada rincón revela un fragmento de un pasado que su conciencia ha decidido borrar.\n\n¿Y si el mundo que ves fue creado para protegerte... de ti mismo?\n¿Y si la verdad está esperando... al final de la sombra?",
-      "capitulos": 4
+      "capitulos": 9,
+      "estado": "completo",
+      "patrocinado": true
     },
     {
       "title": "Ellos ya están en tu cabeza",
@@ -20,7 +22,9 @@
       "generos": ["terror", "psicológico", "ficción", "misterio", "suspenso"],
       "fecha": "27-05-2025",
       "descripcion": "En lo más oscuro de la Dark Web, un audio prohibido espera ser escuchado. Nadie sabe quién lo creó ni qué hay detrás, pero todos los que lo oyen empiezan a perder el control  que hasta que sus propias acciones se vuelven una amenaza para ellos y para quienes aman. ya es demasiado tarde para detenerlo... porque ellos ya están en tu cabeza.",
-      "capitulos": 1
+      "capitulos": 1,
+      "estado": "en progreso",
+      "patrocinado": true
     },
     {
       "title": "Sigue tus sueños",
@@ -31,7 +35,9 @@
       "generos": ["drama", "motivación", "superación personal"],
       "fecha": "05-01-2025",
       "descripcion": "Héctor Madison es un niño de el salvador, que tiene un sueño. El sueño de ser uno de los mejores arqueros del mundo, pero para lograr cumplir ese sueño tiene lidiar con sus padres, los cuales son unos grandes empresarios. Todos los Madison soñaban con ser grandes empresarios, a excepción de uno...",
-      "capitulos": 1
+      "capitulos": 5,
+      "estado": "en progreso",
+      "patrocinado": true
     }
   ]
 }
