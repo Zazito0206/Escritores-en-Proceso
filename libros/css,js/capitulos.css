@@ -112,3 +112,50 @@ nav {
     text-align: center;
   }
 }
+
+/* MODO OSCURO */
+body.dark-mode {
+  background: #121212;
+  color: #eee;
+}
+
+body.dark-mode nav {
+  background: #1f1f1f;
+  box-shadow: 0 2px 8px rgba(255, 111, 60, 0.3);
+}
+
+body.dark-mode .nav-links a {
+  color: #ddd;
+}
+
+body.dark-mode .nav-links a:hover {
+  color: #ff6f3c;
+}
+
+body.dark-mode #contenido-capitulo {
+  background: #1e1e1e;
+  border-color: #ff6f3c;
+  box-shadow: 0 4px 20px rgba(255, 111, 60, 0.3);
+  color: #ddd;
+}
+
+body.dark-mode #contenido-capitulo h1 {
+  color: #ff6f3c;
+}
+
+body.dark-mode #contenido-capitulo p {
+  color: #ccc;
+}
+
+body.dark-mode .botones-navegacion {
+  /* mantener igual */
+}
+
+body.dark-mode .boton-capitulo {
+  background-color: #ff6f3c;
+  color: #fff;
+}
+
+body.dark-mode .boton-capitulo:hover {
+  background-color: #e65a28;
+}
