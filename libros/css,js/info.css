@@ -43,6 +43,8 @@ nav {
   color: #ff6f3c;
 }
 
+
+
 /* estado del libro, completo o en progreso */
 .estado-libro {
   margin-top: 8px;
@@ -152,6 +154,7 @@ nav {
   background: #e05e2a;
 }
 
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .info-container {
@@ -179,4 +182,48 @@ nav {
   .author, .fecha, .descripcion, .generos {
     font-size: 1rem;
   }
+}
+
+/* MODO OSCURO */
+
+/* MODO OSCURO */
+body.dark-mode {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode nav {
+  background: #1e1e1e;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .libro-info {
+  background: #1f1f1f;
+  border-color: #ff6f3c;
+  box-shadow: 0 4px 20px rgba(255, 111, 60, 0.5);
+}
+
+body.dark-mode .estado-libro,
+body.dark-mode .author,
+body.dark-mode .fecha,
+body.dark-mode .descripcion,
+body.dark-mode .generos {
+  color: #ccc;
+}
+
+body.dark-mode .capitulo-btn {
+  background: #ff6f3c;
+  color: white;
+}
+
+body.dark-mode .capitulo-btn:hover {
+  background: #e05e2a;
+}
+
+body.dark-mode .nav-links a {
+  color: #eee;
+}
+
+body.dark-mode .nav-links a:hover {
+  color: #ff6f3c;
 }
