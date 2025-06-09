@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<div id="beta-banner" class="beta-banner">
+<aside id="beta-banner" aria-label="Aviso beta" class="beta-banner">
   <p>
     <strong>Aviso:</strong> Hemos decidido lanzar la página en versión beta para empezar a ayudarnos mutuamente cuanto antes.  
     Recuerda que aún puede contener errores, pero trabajamos para mejorarla rápidamente.<br />
@@ -19,7 +19,8 @@
     <a href="https://chat.whatsapp.com/H9EAUg69UPEIAS4oOsW7xq" target="_blank" rel="noopener noreferrer">https://chat.whatsapp.com/H9EAUg69UPEIAS4oOsW7xq</a>.
   </p>
   <button id="close-banner" aria-label="Cerrar aviso">&times;</button>
-</div>
+</aside>
+
 
 
 
@@ -29,7 +30,7 @@
         <img src="images/logo.png" alt="Escritores en Proceso" class="logo-img" />
     </a>
     <div class="nav-links">
-        <a href="index.html">Inicio</a>
+        <a href="index.html" class="activo">Inicio</a>
         <a href="sobre-nosotros/index.html">Sobre Nosotros</a>
         <a href="/solicitud/solicitud.html">¿Quieres subir tu libro?</a>
     </div>
@@ -42,6 +43,7 @@
 </nav>
 <section class="libros-carrusel" id="recientes">
   <h3>Libros Recientes</h3>
+  <p class="subtitulo-carrusel">Los títulos más nuevos añadidos por nuestros escritores.</p>
   <div class="contenedor-principal">
     <button class="flecha-izquierda" id="izquierda-recientes">&lt;</button>
     <div class="contenedor-carousel">
@@ -52,8 +54,20 @@
   <div class="indicadores" id="indicadores-recientes"></div>
 </section>
 
+<div id="carousel-recientes" class="carousel-container">
+  <!-- Aquí se agregan libros dinámicamente -->
+</div>
+
+<!-- Sección para mostrar Favoritos -->
+<section id="favoritos-section">
+  <h3>Mis Favoritos</h3>
+  <div id="favoritos-list"></div>
+</section>
+
+
 <section class="libros-carrusel" id="populares">
-  <h3>Libros que aún continúan</h3>
+  <h3>Libros Populares</h3>
+  <p class="subtitulo-carrusel">Los libros que más han captado la atención de nuestra comunidad.</p>
   <div class="contenedor-principal">
     <button class="flecha-izquierda" id="izquierda-populares">&lt;</button>
     <div class="contenedor-carousel">
