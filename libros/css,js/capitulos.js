@@ -65,7 +65,6 @@ function cargarCapitulo(jsonArchivo, capituloID) {
 }
 
 // Modo oscuro
-
 const toggleBtn = document.getElementById('toggle-dark-mode');
 const body = document.body;
 
@@ -91,3 +90,21 @@ function toggleDarkMode() {
 if (toggleBtn) {
   toggleBtn.addEventListener('click', toggleDarkMode);
 }
+
+// Prevención de copiar contenido
+
+// 1. Desactivar clic derecho
+document.addEventListener('contextmenu', function(e) {
+  e.preventDefault();
+});
+
+// 2. Desactivar copiar
+document.addEventListener('copy', function(e) {
+  e.preventDefault();
+  alert('Copiar texto está deshabilitado en esta página.');
+});
+
+// 3. Desactivar selección de texto
+document.addEventListener('selectstart', function(e) {
+  e.preventDefault();
+});
