@@ -101,7 +101,14 @@ document.addEventListener('DOMContentLoaded', () => {
           link.innerHTML = `
             <img src="${libro.cover}" alt="Portada de ${libro.title}" />
             <h4>${libro.title}</h4>
-            <span class="estado-libro">${libro.estado === 'completo' ? 'Completo' : 'En progreso'}</span>
+           <span class="estado-libro">${
+  {
+    'completo': 'Completo',
+    'en-progreso': 'En progreso',
+    'proximamente': 'Próximamente'
+  }[libro.estado] || 'Desconocido'
+}</span>
+
             ${libro.patrocinado ? '<div class="badge-logo"><img src="/images/logo-patrocinado.png" alt="Libro patrocinado" /></div>' : ''}
           `;
 
