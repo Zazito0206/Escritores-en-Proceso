@@ -40,16 +40,16 @@
       "patrocinado": true
     },
     {
-      "title": "Fragmentos del Olvido",
-      "slug": "fragmentos-del-olvido",
-      "author": "Amilcar Quintanilla",
-      "cover": "images/fragmentos-del-olvido.png",
+      "title": "",
+      "slug": "",
+      "author": "",
+      "cover": "",
       "genres": ["populares", "recientes"],
       "generos": ["terror psicológico", "sobrenatural", "misterio", "suspenso", "drama"],
       "fecha": "xx-xx-xxxx",
-      "descripcion": "Sergio Castillo recibe fotografías prohibidas que lo arrastran hasta Niebla Vieja, un pueblo perdido en la niebla donde el tiempo se detiene y la oscuridad oculta horrores que nadie se atreve a nombrar. Allí, las sombras no solo susurran, persiguen. Cada paso que da lo acerca a una verdad tan aterradora que podría destruir su mente… o borrar su existencia para siempre. En Niebla Vieja, nadie escapa del olvido. ¿Y tú, estarías dispuesto a enfrentarlo?",
+      "descripcion": "",
       "capitulos": 1,
-      "estado": "proximamente",
+      "estado": "",
       "patrocinado": true
     }
   ]
