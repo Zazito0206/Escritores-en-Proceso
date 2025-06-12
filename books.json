@@ -38,19 +38,6 @@
       "capitulos": 1,
       "estado": "en-progreso",
       "patrocinado": true
-    },
-    {
-      "title": "",
-      "slug": "",
-      "author": "",
-      "cover": "",
-      "genres": ["populares", "recientes"],
-      "generos": ["terror psicológico", "sobrenatural", "misterio", "suspenso", "drama"],
-      "fecha": "xx-xx-xxxx",
-      "descripcion": "",
-      "capitulos": 1,
-      "estado": "",
-      "patrocinado": true
     }
   ]
 }
