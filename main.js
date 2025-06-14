@@ -189,29 +189,4 @@ document.addEventListener('DOMContentLoaded', () => {
   crearCarrusel('recientes');
   crearCarrusel('populares');
 
-  // --- Registrar Service Worker y activar actualizaciones automáticas ---
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(reg => {
-        console.log('✅ Service Worker registrado con éxito:', reg.scope);
-
-        if (reg.waiting) {
-          reg.waiting.postMessage({ type: 'SKIP_WAITING' });
-        }
-
-        reg.addEventListener('updatefound', () => {
-          const newWorker = reg.installing;
-          newWorker.addEventListener('statechange', () => {
-            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-              console.log('ℹ️ Nueva versión del Service Worker instalada. Actualizando...');
-              newWorker.postMessage({ type: 'SKIP_WAITING' });
-            }
-          });
-        });
-      })
-      .catch(err => {
-        console.log('❌ Error al registrar el Service Worker:', err);
-      });
-  }
-
-}); // <-- Fin DOMContentLoaded
+});
