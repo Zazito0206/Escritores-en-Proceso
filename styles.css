@@ -511,3 +511,20 @@ body.dark-mode {
   --badge-sombra: 0 0 6px rgba(255, 76, 28, 0.8);
   --color-libro-estado-bg: #ff4c1c;
 }
+
+#install-btn {
+  background-color: #0b2146;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 20px auto;
+  display: block;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#install-btn:hover {
+  background-color: #133366;
+}
