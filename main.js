@@ -183,11 +183,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   toggleBtn.addEventListener('click', toggleDarkMode);
 
-  // --- Crear carruseles para géneros que quieras mostrar
+  // --- Crear carruseles para géneros que quieras mostrar ---
   crearCarrusel('recientes');
   crearCarrusel('populares');
 
-  // --- Registrar Service Worker y activar actualizaciones automáticas
+  // --- Registrar Service Worker y activar actualizaciones automáticas ---
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js')
       .then(reg => {
@@ -216,7 +216,11 @@ document.addEventListener('DOMContentLoaded', () => {
   let deferredPrompt;
   const installBtn = document.getElementById('install-btn');
 
+  // Forzar mostrar botón para pruebas (remueve esta línea cuando confirmes que funciona)
+  installBtn.style.display = 'inline-block';
+
   window.addEventListener('beforeinstallprompt', (e) => {
+    console.log('beforeinstallprompt detectado');
     e.preventDefault();
     deferredPrompt = e;
 
