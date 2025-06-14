@@ -74,10 +74,14 @@ document.addEventListener('DOMContentLoaded', () => {
     contadores.forEach(contador => {
       const fechaTexto = contador.dataset.fecha;
 
-      // Parsear la fecha como local (sin interpretar UTC)
-      const partesFecha = fechaTexto.split('T')[0].split('-');
-      // Año, mes (0-indexed), día
-      const fechaObjetivo = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2]);
+      // Convertir fecha con hora en local:
+      // OJO: Si el string incluye "T" sin zona, JS interpreta como UTC,
+      // para forzar local, separamos partes y creamos Date así:
+      const [fechaParte, horaParte = '00:00:00'] = fechaTexto.split('T');
+      const [anio, mes, dia] = fechaParte.split('-').map(Number);
+      const [horas, minutos, segundos] = horaParte.split(':').map(Number);
+
+      const fechaObjetivo = new Date(anio, mes - 1, dia, horas || 0, minutos || 0, segundos || 0);
 
       function actualizar() {
         const ahora = new Date();
