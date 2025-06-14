@@ -1,6 +1,6 @@
 {
   "name": "Escritores en Proceso",
-  "short_name": "Escriotres en proceso",
+  "short_name": "Escritores en proceso",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#282828",
