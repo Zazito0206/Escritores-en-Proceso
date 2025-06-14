@@ -3,8 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const indicadores = document.getElementById('indicadores-proximamente');
   const flechaIzquierda = document.getElementById('izquierda-proximamente');
   const flechaDerecha = document.getElementById('derecha-proximamente');
-  const contenedor = document.getElementById('carrusel-proximamente-container');
+  const contenedor = document.getElementById('proximamente'); // <- este ID SÍ existe en tu HTML
 
+  let libros = [];
   let indiceActual = 0;
 
   function slugify(text) {
@@ -21,20 +22,17 @@ document.addEventListener('DOMContentLoaded', () => {
   fetch('proximos.json')
     .then(res => res.json())
     .then(data => {
-      // Solo libros próximos y con slug válido
-      const libros = data.filter(libro =>
-        libro.estado === 'proximamente' &&
-        libro.slug &&
-        libro.slug.trim() !== ''
-      );
+      libros = data.filter(libro => libro.estado === 'proximamente');
 
-      // Si no hay libros válidos, ocultar el contenedor
-      if (libros.length === 0) {
-        if (contenedor) contenedor.classList.add('hidden');
+      // Ocultar si TODOS los libros tienen estado 'proximamente' (y ningún otro estado)
+      const todosSoloProximamente = data.every(libro => libro.estado === 'proximamente');
+
+      if (libros.length === 0 || todosSoloProximamente) {
+        if (contenedor) contenedor.style.display = 'none';
         return;
-      } else {
-        if (contenedor) contenedor.classList.remove('hidden');
       }
+
+      if (contenedor) contenedor.style.display = 'block';
 
       libros.forEach(libro => {
         const link = document.createElement('a');
@@ -43,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const slug = libro.slug || slugify(libro.title || 'libro');
 
+        // Inicialmente sin href
         link.removeAttribute('href');
         link.style.pointerEvents = 'none';
         link.style.cursor = 'default';
@@ -62,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(err => {
       console.error('Error cargando proximos.json:', err);
-      if (contenedor) contenedor.classList.add('hidden');
+      if (contenedor) contenedor.style.display = 'none';
     });
 
   flechaDerecha.addEventListener('click', () => moverCarrusel('siguiente'));
