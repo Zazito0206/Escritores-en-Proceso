@@ -183,11 +183,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   toggleBtn.addEventListener('click', toggleDarkMode);
 
-  // --- Crear carruseles para géneros que quieras mostrar ---
+  // --- Crear carruseles para géneros que quieras mostrar
   crearCarrusel('recientes');
   crearCarrusel('populares');
 
-  // --- Registrar Service Worker y activar actualizaciones automáticas ---
+  // --- Registrar Service Worker y activar actualizaciones automáticas
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js')
       .then(reg => {
@@ -216,34 +216,36 @@ document.addEventListener('DOMContentLoaded', () => {
   let deferredPrompt;
   const installBtn = document.getElementById('install-btn');
 
-  // Forzar mostrar botón para pruebas (remueve esta línea cuando confirmes que funciona)
-  installBtn.style.display = 'inline-block';
+  // Asignar evento click siempre, ejecuta prompt solo si deferredPrompt está listo
+  installBtn.addEventListener('click', async () => {
+    if (!deferredPrompt) {
+      console.log('No hay prompt de instalación disponible');
+      return;
+    }
+
+    deferredPrompt.prompt();
+
+    const choiceResult = await deferredPrompt.userChoice;
+
+    if (choiceResult.outcome === 'accepted') {
+      console.log('📲 El usuario aceptó instalar la app');
+    } else {
+      console.log('🙅‍♂️ El usuario canceló la instalación');
+    }
+
+    deferredPrompt = null;
+    installBtn.style.display = 'none';
+  });
 
   window.addEventListener('beforeinstallprompt', (e) => {
-    console.log('beforeinstallprompt detectado');
     e.preventDefault();
     deferredPrompt = e;
-
-    if (installBtn) installBtn.style.display = 'inline-block';
-
-    installBtn.onclick = () => {
-      deferredPrompt.prompt();
-
-      deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('📲 El usuario aceptó instalar la app');
-        } else {
-          console.log('🙅‍♂️ El usuario canceló la instalación');
-        }
-        deferredPrompt = null;
-        if (installBtn) installBtn.style.display = 'none';
-      });
-    };
+    installBtn.style.display = 'inline-block';
   });
 
   window.addEventListener('appinstalled', () => {
     console.log('✅ App instalada correctamente');
-    if (installBtn) installBtn.style.display = 'none';
+    installBtn.style.display = 'none';
   });
 
 }); // <-- Fin de DOMContentLoaded
