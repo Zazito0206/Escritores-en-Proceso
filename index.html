@@ -91,53 +91,6 @@
 </section>
 
 
-
-<script>
-  // Registrar Service Worker
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(reg => {
-        console.log('✅ Service Worker registrado con éxito:', reg.scope);
-      })
-      .catch(err => {
-        console.log('❌ Error al registrar el Service Worker:', err);
-      });
-  }
-
-  // Manejo de instalación PWA
-  let deferredPrompt;
-  const installBtn = document.getElementById('install-btn');
-
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-
-    // Mostrar el botón de instalar
-    if (installBtn) installBtn.style.display = 'inline-block';
-
-    installBtn.addEventListener('click', () => {
-      deferredPrompt.prompt();
-
-      deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('📲 El usuario aceptó instalar la app');
-        } else {
-          console.log('🙅‍♂️ El usuario canceló la instalación');
-        }
-        deferredPrompt = null;
-        installBtn.style.display = 'none';
-      });
-    });
-  });
-
-  // Ocultar el botón si ya se instaló
-  window.addEventListener('appinstalled', () => {
-    console.log('✅ App instalada correctamente');
-    if (installBtn) installBtn.style.display = 'none';
-  });
-</script>
-
-
 <script src="proximos.js" defer></script>
 <script src="main.js" defer></script>
 </body>
