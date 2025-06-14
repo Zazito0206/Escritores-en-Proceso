@@ -7,14 +7,29 @@ document.addEventListener('DOMContentLoaded', () => {
   let libros = [];
   let indiceActual = 0;
 
+  // Función para crear slugs URL friendly para rutas
+  function slugify(text) {
+    return text.toString().toLowerCase()
+      .normalize('NFD')                      // Descompone acentos en caracteres base + diacríticos
+      .replace(/[\u0300-\u036f]/g, '')       // Elimina los diacríticos (acentos)
+      .replace(/ñ/g, 'n')                    // Cambia ñ por n
+      .replace(/\s+/g, '-')                  // Espacios por guiones
+      .replace(/[^\w\-]+/g, '')              // Elimina caracteres no alfanuméricos ni guiones
+      .replace(/\-\-+/g, '-')                // Reemplaza guiones dobles por uno solo
+      .trim();
+  }
+
   fetch('proximos.json')
     .then(res => res.json())
     .then(data => {
       libros = data.filter(libro => libro.estado === 'proximamente');
 
       libros.forEach(libro => {
-        const link = document.createElement('div');
+        const link = document.createElement('a');
         link.classList.add('libro');
+        link.title = libro.slug || 'Libro próximo';
+        link.href = `/libros/${libro.slug || slugify(libro.slug)}\/info/index.html`;
+        link.style.cursor = 'pointer';
 
         link.innerHTML = `
           <img src="${libro.cover}" alt="Portada" />
@@ -72,24 +87,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const contadores = document.querySelectorAll('.contador');
 
     contadores.forEach(contador => {
-      const fechaTexto = contador.dataset.fecha;
-
-      // Convertir fecha con hora en local:
-      // OJO: Si el string incluye "T" sin zona, JS interpreta como UTC,
-      // para forzar local, separamos partes y creamos Date así:
-      const [fechaParte, horaParte = '00:00:00'] = fechaTexto.split('T');
-      const [anio, mes, dia] = fechaParte.split('-').map(Number);
-      const [horas, minutos, segundos] = horaParte.split(':').map(Number);
-
-      const fechaObjetivo = new Date(anio, mes - 1, dia, horas || 0, minutos || 0, segundos || 0);
+      const fechaObjetivo = new Date(contador.dataset.fecha).getTime();
 
       function actualizar() {
-        const ahora = new Date();
-        const diferencia = fechaObjetivo.getTime() - ahora.getTime();
+        const ahora = new Date().getTime();
+        const diferencia = fechaObjetivo - ahora;
 
         if (diferencia <= 0) {
           contador.textContent = '¡Disponible!';
-          contador.classList.add('disponible');
           return;
         }
 
