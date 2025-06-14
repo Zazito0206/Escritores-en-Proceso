@@ -7,15 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
   let libros = [];
   let indiceActual = 0;
 
-  // Función para crear slugs URL friendly para rutas
   function slugify(text) {
     return text.toString().toLowerCase()
-      .normalize('NFD')                      // Descompone acentos en caracteres base + diacríticos
-      .replace(/[\u0300-\u036f]/g, '')       // Elimina los diacríticos (acentos)
-      .replace(/ñ/g, 'n')                    // Cambia ñ por n
-      .replace(/\s+/g, '-')                  // Espacios por guiones
-      .replace(/[^\w\-]+/g, '')              // Elimina caracteres no alfanuméricos ni guiones
-      .replace(/\-\-+/g, '-')                // Reemplaza guiones dobles por uno solo
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/ñ/g, 'n')
+      .replace(/\s+/g, '-')
+      .replace(/[^\w\-]+/g, '')
+      .replace(/\-\-+/g, '-')
       .trim();
   }
 
@@ -28,8 +27,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const link = document.createElement('a');
         link.classList.add('libro');
         link.title = libro.slug || 'Libro próximo';
-        link.href = `/libros/${libro.slug || slugify(libro.slug)}\/info/index.html`;
-        link.style.cursor = 'pointer';
+
+        // Aquí generamos el slug para el href
+        const slug = libro.slug || slugify(libro.slug || libro.title || 'libro');
+
+        // Inicialmente sin href para evitar click
+        link.removeAttribute('href');
+        link.style.pointerEvents = 'none';
+        link.style.cursor = 'default';
+
+        // Guardamos el href real en dataset para luego activarlo
+        link.dataset.href = `/libros/${slug}/info/index.html`;
 
         link.innerHTML = `
           <img src="${libro.cover}" alt="Portada" />
@@ -88,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     contadores.forEach(contador => {
       const fechaObjetivo = new Date(contador.dataset.fecha).getTime();
+      const link = contador.parentElement; // <a> que contiene el contador
 
       function actualizar() {
         const ahora = new Date().getTime();
@@ -95,6 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (diferencia <= 0) {
           contador.textContent = '¡Disponible!';
+          // Activar enlace al estar disponible
+          link.href = link.dataset.href;
+          link.style.pointerEvents = 'auto';
+          link.style.cursor = 'pointer';
           return;
         }
 
