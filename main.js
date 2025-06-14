@@ -198,8 +198,65 @@ document.addEventListener('DOMContentLoaded', () => {
   toggleBtn.addEventListener('click', toggleDarkMode);
 
 
-  // Crear carruseles para géneros que quieras mostrar
+    // --- Crear carruseles para géneros que quieras mostrar
   crearCarrusel('recientes');
   crearCarrusel('populares');
 
-});
+  // --- Registrar Service Worker y activar actualizaciones automáticas
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(reg => {
+        console.log('✅ Service Worker registrado con éxito:', reg.scope);
+
+        // Activar nueva versión si está esperando
+        if (reg.waiting) {
+          reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+        }
+
+        // Detectar si hay nueva versión instalada
+        reg.addEventListener('updatefound', () => {
+          const newWorker = reg.installing;
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              console.log('ℹ️ Nueva versión del Service Worker instalada. Actualizando...');
+              newWorker.postMessage({ type: 'SKIP_WAITING' });
+            }
+          });
+        });
+      })
+      .catch(err => {
+        console.log('❌ Error al registrar el Service Worker:', err);
+      });
+  }
+
+  // --- Manejo de instalación PWA (botón personalizado)
+  let deferredPrompt;
+  const installBtn = document.getElementById('install-btn');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+
+    if (installBtn) installBtn.style.display = 'inline-block';
+
+    installBtn.addEventListener('click', () => {
+      deferredPrompt.prompt();
+
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('📲 El usuario aceptó instalar la app');
+        } else {
+          console.log('🙅‍♂️ El usuario canceló la instalación');
+        }
+        deferredPrompt = null;
+        installBtn.style.display = 'none';
+      });
+    });
+  });
+
+  window.addEventListener('appinstalled', () => {
+    console.log('✅ App instalada correctamente');
+    if (installBtn) installBtn.style.display = 'none';
+  });
+
+}); // <-- Fin de DOMContentLoaded
