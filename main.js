@@ -181,9 +181,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  toggleBtn.addEventListener('click', toggleDarkMode);
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', toggleDarkMode);
+  }
 
-  // --- Crear carruseles para géneros que quieras mostrar
+  // --- Crear carruseles para géneros que quieras mostrar ---
   crearCarrusel('recientes');
   crearCarrusel('populares');
 
@@ -211,36 +213,5 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('❌ Error al registrar el Service Worker:', err);
       });
   }
-
-  // --- Manejo de instalación PWA (botón personalizado) ---
-  let deferredPrompt;
-  const installBtn = document.getElementById('install-btn');
-
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    if (installBtn) installBtn.style.display = 'inline-block';
-  });
-
-  installBtn.addEventListener('click', async () => {
-    if (!deferredPrompt) {
-      console.log('No hay prompt disponible para instalar.');
-      return;
-    }
-    deferredPrompt.prompt();
-    const choiceResult = await deferredPrompt.userChoice;
-    if (choiceResult.outcome === 'accepted') {
-      console.log('Usuario aceptó instalar la app');
-    } else {
-      console.log('Usuario canceló la instalación');
-    }
-    deferredPrompt = null;
-    installBtn.style.display = 'none';
-  });
-
-  window.addEventListener('appinstalled', () => {
-    console.log('App instalada');
-    if (installBtn) installBtn.style.display = 'none';
-  });
 
 }); // <-- Fin DOMContentLoaded
