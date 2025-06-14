@@ -22,17 +22,22 @@ document.addEventListener('DOMContentLoaded', () => {
   fetch('proximos.json')
     .then(res => res.json())
     .then(data => {
+      // Filtrar libros con estado 'proximamente'
       libros = data.filter(libro => libro.estado === 'proximamente');
 
-      // Ocultar todo el contenedor si no hay libros próximos
-      if (libros.length === 0) {
+      // Filtrar libros con slug válido (no vacío ni solo espacios)
+      const librosValidos = libros.filter(libro => libro.slug && libro.slug.trim() !== '');
+
+      // Si no hay libros válidos, ocultar contenedor y salir
+      if (librosValidos.length === 0) {
         if (contenedor) contenedor.style.display = 'none';
         return;
       } else {
         if (contenedor) contenedor.style.display = 'block';
       }
 
-      libros.forEach(libro => {
+      // Construir carrusel solo con libros válidos
+      librosValidos.forEach(libro => {
         const link = document.createElement('a');
         link.classList.add('libro');
         link.title = libro.title || 'Libro próximo';
@@ -44,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link.style.pointerEvents = 'none';
         link.style.cursor = 'default';
 
-        // Guardamos el href real en dataset para luego activarlo
+        // Guardar href real para activarlo luego
         link.dataset.href = `/libros/${slug}/info/index.html`;
 
         link.innerHTML = `
