@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const indicadores = document.getElementById('indicadores-proximamente');
   const flechaIzquierda = document.getElementById('izquierda-proximamente');
   const flechaDerecha = document.getElementById('derecha-proximamente');
+  const contenedor = document.getElementById('carrusel-proximamente-container'); // contenedor general del carrusel
 
   let libros = [];
   let indiceActual = 0;
@@ -23,13 +24,20 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(data => {
       libros = data.filter(libro => libro.estado === 'proximamente');
 
+      // Ocultar todo el contenedor si no hay libros próximos
+      if (libros.length === 0) {
+        if (contenedor) contenedor.style.display = 'none';
+        return;
+      } else {
+        if (contenedor) contenedor.style.display = 'block';
+      }
+
       libros.forEach(libro => {
         const link = document.createElement('a');
         link.classList.add('libro');
-        link.title = libro.slug || 'Libro próximo';
+        link.title = libro.title || 'Libro próximo';
 
-        // Aquí generamos el slug para el href
-        const slug = libro.slug || slugify(libro.slug || libro.title || 'libro');
+        const slug = libro.slug || slugify(libro.title || 'libro');
 
         // Inicialmente sin href para evitar click
         link.removeAttribute('href');
@@ -40,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link.dataset.href = `/libros/${slug}/info/index.html`;
 
         link.innerHTML = `
-          <img src="${libro.cover}" alt="Portada" />
+          <img src="${libro.cover}" alt="Portada de ${libro.title || 'Libro próximo'}" />
           <div class="contador" data-fecha="${libro.fecha}">Cargando...</div>
         `;
 
@@ -50,6 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
       crearIndicadores();
       actualizarIndicador();
       iniciarContadores();
+    })
+    .catch(err => {
+      console.error('Error cargando proximos.json:', err);
+      if (contenedor) contenedor.style.display = 'none';
     });
 
   flechaDerecha.addEventListener('click', () => moverCarrusel('siguiente'));
