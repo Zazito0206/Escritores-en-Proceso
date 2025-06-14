@@ -1,10 +1,10 @@
 {
   "name": "Escritores en Proceso",
-  "short_name": "EP",
+  "short_name": "Escriotres en proceso",
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#0b2146",
-  "theme_color": "#0b2146",
+  "background_color": "#282828",
+  "theme_color": "#282828",
   "icons": [
     {
       "src": "images/icon-ep-192.png",
