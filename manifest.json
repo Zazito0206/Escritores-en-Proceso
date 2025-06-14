@@ -1,6 +1,6 @@
 {
   "name": "Escritores en Proceso",
-  "short_name": "Escritores",
+  "short_name": "EP",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#0b2146",
