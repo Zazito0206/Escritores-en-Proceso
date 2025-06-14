@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const storageKey = 'betaBannerClosedAt';
   const hideDuration = 1 * 60 * 60 * 1000; // 1 hora en milisegundos
 
-  // Animación para mostrar (fadeIn)
   function fadeIn(element) {
     element.style.opacity = 0;
     element.style.display = 'block';
@@ -21,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
     tick();
   }
 
-  // Animación para ocultar (fadeOut)
   function fadeOut(element, callback) {
     element.style.opacity = 1;
     let last = +new Date();
@@ -38,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
     tick();
   }
 
-  // Determina si debe mostrarse el banner (si pasaron >12h desde cierre)
   function shouldShowBanner() {
     const closedAt = localStorage.getItem(storageKey);
     if (!closedAt) return true;
@@ -61,19 +58,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   // --- Fin banner ---
 
-
   // Función para crear slugs URL friendly para rutas
   function slugify(text) {
     return text.toString().toLowerCase()
-      .normalize('NFD')                      // Descompone acentos en caracteres base + diacríticos
-      .replace(/[\u0300-\u036f]/g, '')       // Elimina los diacríticos (acentos)
-      .replace(/ñ/g, 'n')                    // Cambia ñ por n
-      .replace(/\s+/g, '-')                  // Espacios por guiones
-      .replace(/[^\w\-]+/g, '')              // Elimina caracteres no alfanuméricos ni guiones
-      .replace(/\-\-+/g, '-')                // Reemplaza guiones dobles por uno solo
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/ñ/g, 'n')
+      .replace(/\s+/g, '-')
+      .replace(/[^\w\-]+/g, '')
+      .replace(/\-\-+/g, '-')
       .trim();
   }
-
 
   // Función que crea un carrusel para un género
   function crearCarrusel(genero) {
@@ -101,14 +96,13 @@ document.addEventListener('DOMContentLoaded', () => {
           link.innerHTML = `
             <img src="${libro.cover}" alt="Portada de ${libro.title}" />
             <h4>${libro.title}</h4>
-           <span class="estado-libro">${
-  {
-    'completo': 'Completo',
-    'en-progreso': 'En progreso',
-    'proximamente': 'Próximamente'
-  }[libro.estado] || 'Desconocido'
-}</span>
-
+            <span class="estado-libro">${
+              {
+                'completo': 'Completo',
+                'en-progreso': 'En progreso',
+                'proximamente': 'Próximamente'
+              }[libro.estado] || 'Desconocido'
+            }</span>
             ${libro.patrocinado ? '<div class="badge-logo"><img src="/images/logo-patrocinado.png" alt="Libro patrocinado" /></div>' : ''}
           `;
 
@@ -119,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
         actualizarIndicador();
       });
 
-    // Eventos flechas para mover el carrusel
     flechaDerecha.addEventListener('click', () => {
       moverCarrusel('siguiente');
     });
@@ -128,7 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
       moverCarrusel('anterior');
     });
 
-    // Función para mover el scroll del carrusel y actualizar indicador
     function moverCarrusel(direccion) {
       const anchoContenedor = carousel.parentElement.offsetWidth;
       if (direccion === 'siguiente') {
@@ -141,7 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
       actualizarIndicador();
     }
 
-    // Crea botones indicadores según páginas (5 libros por página)
     function crearIndicadores() {
       indicadores.innerHTML = '';
       const items = carousel.querySelectorAll('.libro');
@@ -158,7 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Actualiza el indicador activo
     function actualizarIndicador() {
       const botones = indicadores.querySelectorAll('button');
       botones.forEach(btn => btn.classList.remove('activo'));
@@ -168,13 +158,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-
   // --- Toggle modo oscuro ---
-
   const toggleBtn = document.getElementById('toggle-dark-mode');
   const body = document.body;
 
-  // Carga modo guardado o usa preferencia sistema
   const savedMode = localStorage.getItem('dark-mode');
   if (savedMode === 'enabled') {
     body.classList.add('dark-mode');
@@ -185,7 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Cambia el modo oscuro
   function toggleDarkMode() {
     body.classList.toggle('dark-mode');
     if (body.classList.contains('dark-mode')) {
@@ -197,8 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   toggleBtn.addEventListener('click', toggleDarkMode);
 
-
-    // --- Crear carruseles para géneros que quieras mostrar
+  // --- Crear carruseles para géneros que quieras mostrar
   crearCarrusel('recientes');
   crearCarrusel('populares');
 
@@ -208,12 +193,10 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(reg => {
         console.log('✅ Service Worker registrado con éxito:', reg.scope);
 
-        // Activar nueva versión si está esperando
         if (reg.waiting) {
           reg.waiting.postMessage({ type: 'SKIP_WAITING' });
         }
 
-        // Detectar si hay nueva versión instalada
         reg.addEventListener('updatefound', () => {
           const newWorker = reg.installing;
           newWorker.addEventListener('statechange', () => {
@@ -229,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 
-  // --- Manejo de instalación PWA (botón personalizado)
+  // --- Manejo de instalación PWA (botón personalizado) ---
   let deferredPrompt;
   const installBtn = document.getElementById('install-btn');
 
@@ -239,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (installBtn) installBtn.style.display = 'inline-block';
 
-    installBtn.addEventListener('click', () => {
+    installBtn.onclick = () => {
       deferredPrompt.prompt();
 
       deferredPrompt.userChoice.then((choiceResult) => {
@@ -249,9 +232,9 @@ document.addEventListener('DOMContentLoaded', () => {
           console.log('🙅‍♂️ El usuario canceló la instalación');
         }
         deferredPrompt = null;
-        installBtn.style.display = 'none';
+        if (installBtn) installBtn.style.display = 'none';
       });
-    });
+    };
   });
 
   window.addEventListener('appinstalled', () => {
