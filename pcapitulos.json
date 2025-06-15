@@ -1,9 +1,9 @@
 [
   {
-    "title": "Libro 1",
-    "slug": "libro-1",
-    "cover": "ruta/portada.jpg",
-    "fecha": "2025-06-20T12:00:00Z"
+    "title": "",
+    "slug": "",
+    "cover": "images/cuando-la-oscuridad-llama.png",
+    "fecha": "2025-06-19T12:00:00Z"
   },
   ...
 ]
