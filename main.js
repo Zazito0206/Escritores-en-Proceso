@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- Banner con cierre temporal cada 1 hora ---
-  const banner = document.getElementById('beta-banner');
-  const closeBtn = document.getElementById('close-banner');
-  const storageKey = 'betaBannerClosedAt';
-  const hideDuration = 1 * 60 * 60 * 1000; // 1 hora en ms
+// --- Banner con cierre temporal cada 30 minutos ---
+const banner = document.getElementById('beta-banner');
+const closeBtn = document.getElementById('close-banner');
+const storageKey = 'betaBannerClosedAt';
+const hideDuration = 30 * 60 * 1000; // 30 minutos en ms
+
 
   function fadeIn(element) {
     element.style.opacity = 0;
