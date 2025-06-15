@@ -469,17 +469,15 @@ nav .search-bar button:hover {
   left: 0;
   right: 0;
   z-index: 1000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
+  display: block; /* CAMBIO de flex a block */
   box-shadow: 0 2px 8px rgba(255, 180, 0, 0.3);
 }
 
 .beta-banner p {
-  margin: 0;
+  margin: 0 auto;
   line-height: 1.4;
   max-width: 800px;
+  text-align: center;
 }
 
 .beta-banner a {
@@ -489,13 +487,15 @@ nav .search-bar button:hover {
 }
 
 .beta-banner button {
+  position: absolute;
+  right: 20px;
+  top: 16px;
   background: transparent;
   border: none;
   font-size: 1.8rem;
   color: var(--rojo);
   cursor: pointer;
 }
-
 /* --- modo oscuro --- */
 body.dark-mode {
   --color-fondo: #121212;
