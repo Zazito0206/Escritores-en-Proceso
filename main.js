@@ -12,15 +12,13 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-// Puedes usar luego firebase.auth() y firebase.firestore() si lo necesitas
-
 document.addEventListener('DOMContentLoaded', () => {
 
   // --- Banner con cierre temporal cada 30 minutos ---
   const banner = document.getElementById('beta-banner');
   const closeBtn = document.getElementById('close-banner');
   const storageKey = 'betaBannerClosedAt';
-  const hideDuration = 30 * 60 * 1000; // 30 minutos en ms
+  const hideDuration = 30 * 60 * 1000;
 
   function fadeIn(element) {
     element.style.opacity = 0;
@@ -72,9 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
-  // --- Fin banner ---
 
-  // Función para crear slugs URL friendly para rutas
+  // --- Función para crear slugs URL-friendly ---
   function slugify(text) {
     return text.toString().toLowerCase()
       .normalize('NFD')
@@ -86,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .trim();
   }
 
-  // Función que crea un carrusel para un género
+  // --- Carruseles por género ---
   function crearCarrusel(genero) {
     const carousel = document.getElementById(`carousel-${genero}`);
     const indicadores = document.getElementById(`indicadores-${genero}`);
@@ -129,13 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
         actualizarIndicador();
       });
 
-    flechaDerecha.addEventListener('click', () => {
-      moverCarrusel('siguiente');
-    });
-
-    flechaIzquierda.addEventListener('click', () => {
-      moverCarrusel('anterior');
-    });
+    flechaDerecha?.addEventListener('click', () => moverCarrusel('siguiente'));
+    flechaIzquierda?.addEventListener('click', () => moverCarrusel('anterior'));
 
     function moverCarrusel(direccion) {
       const anchoContenedor = carousel.parentElement.offsetWidth;
@@ -174,64 +166,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // --- Toggle modo oscuro ---
+  // --- Modo oscuro ---
   const toggleBtn = document.getElementById('toggle-dark-mode');
   const body = document.body;
-
   const savedMode = localStorage.getItem('dark-mode');
+
   if (savedMode === 'enabled') {
     body.classList.add('dark-mode');
-  } else if (!savedMode) {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      body.classList.add('dark-mode');
-      localStorage.setItem('dark-mode', 'enabled');
-    }
+  } else if (!savedMode && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    body.classList.add('dark-mode');
+    localStorage.setItem('dark-mode', 'enabled');
   }
 
-  function toggleDarkMode() {
+  toggleBtn?.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
-    if (body.classList.contains('dark-mode')) {
-      localStorage.setItem('dark-mode', 'enabled');
-    } else {
-      localStorage.setItem('dark-mode', 'disabled');
-    }
-  }
+    localStorage.setItem('dark-mode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
+  });
 
-  if (toggleBtn) {
-    toggleBtn.addEventListener('click', toggleDarkMode);
-  }
-
-  // --- Crear carruseles para géneros que quieras mostrar ---
+  // --- Carruseles disponibles ---
   crearCarrusel('recientes');
   crearCarrusel('populares');
 
-
-  // --- Autenticación con Google o Facebook ---
+  // --- Autenticación y UI dinámico ---
   const loginBtn = document.getElementById('login-btn');
   const userPhoto = document.getElementById('user-photo');
 
   const auth = firebase.auth();
-  const providerGoogle = new firebase.auth.GoogleAuthProvider();
-  const providerFacebook = new firebase.auth.FacebookAuthProvider();
-
-  loginBtn?.addEventListener('click', () => {
-    auth.signInWithPopup(providerGoogle)
-      .then((result) => {
-        window.location.href = "/";
-      })
-      .catch((error) => {
-        console.error("Error al iniciar sesión:", error);
-      });
-  });
 
   auth.onAuthStateChanged((user) => {
     if (user) {
-      loginBtn.style.display = "none";
-      userPhoto.style.display = "inline-block";
-      userPhoto.src = user.photoURL;
+      if (loginBtn) loginBtn.style.display = "none";
+      if (userPhoto) {
+        userPhoto.src = user.photoURL || "/images/usuario-default.png";
+        userPhoto.alt = user.displayName || "Usuario";
+        userPhoto.style.display = "inline-block";
+      }
     } else {
-      loginBtn.style.display = "inline-block";
-      userPhoto.style.display = "none";
+      if (loginBtn) loginBtn.style.display = "inline-block";
+      if (userPhoto) userPhoto.style.display = "none";
     }
   });
 
