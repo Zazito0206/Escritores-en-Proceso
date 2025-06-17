@@ -558,3 +558,48 @@ body.dark-mode {
 #user-photo:hover {
   transform: scale(1.05);
 }
+
+/* Dropdown estilos */
+.dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: var(--color-nav-fondo);
+  border: 1px solid var(--color-nav-texto);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  z-index: 1000;
+}
+
+.dropdown.hidden {
+  display: none;
+}
+
+.dropdown a,
+.dropdown button {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacio entre ícono y texto */
+  color: var(--color-nav-texto);
+  text-decoration: none;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.dropdown a:hover,
+.dropdown button:hover {
+  background-color: var(--rojo-hover);
+  color: #fff;
+  border-radius: 4px;
+}
+
+.dropdown i {
+  font-size: 1rem; /* Tamaño del ícono */
+}
