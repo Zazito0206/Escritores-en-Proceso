@@ -21,14 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
   fetch('proximos/proximos.json')
     .then(res => res.json())
     .then(data => {
-      // Solo libros próximos y con slug válido
       const libros = data.filter(libro =>
         libro.estado === 'proximamente' &&
         libro.slug &&
         libro.slug.trim() !== ''
       );
 
-      // Si no hay libros válidos, ocultar el contenedor
       if (libros.length === 0) {
         if (contenedor) contenedor.classList.add('hidden');
         return;
@@ -41,15 +39,32 @@ document.addEventListener('DOMContentLoaded', () => {
         link.classList.add('libro');
         link.title = libro.title || 'Libro próximo';
 
-        const slug = libro.slug || slugify(libro.title || 'libro');
+        // Usar la URL definida en el JSON o generar una por defecto
+        const url = libro.url ? libro.url : `/libros/${libro.slug}/info/index.html`;
 
-        link.removeAttribute('href');
-        link.style.pointerEvents = 'none';
-        link.style.cursor = 'default';
-        link.dataset.href = `/libros/${slug}/info/index.html`;
+        // Si el libro está disponible, habilitar el enlace
+        if (new Date(libro.fecha).getTime() <= Date.now()) {
+          link.setAttribute('href', url);
+          link.style.pointerEvents = 'auto';
+          link.style.cursor = 'pointer';
+        } else {
+          link.removeAttribute('href');
+          link.style.pointerEvents = 'none';
+          link.style.cursor = 'default';
+        }
+
+        // Mostrar el estado del libro (Nuevo Libro o Nuevo Capítulo)
+        const tipoEstado = libro.tipo === 'libro' ? 'Nuevo Libro' : 'Nuevo Capítulo';
+
+        // Mostrar el logo si es patrocinado
+        const logoPatrocinado = libro.patrocinado 
+          ? '<div class="badge-logo"><img src="/images/logo-patrocinado.png" alt="Libro patrocinado" /></div>' 
+          : '';
 
         link.innerHTML = `
           <img src="${libro.cover}" alt="Portada de ${libro.title || 'Libro próximo'}" />
+          <span class="estado-libro">${tipoEstado}</span>
+          ${logoPatrocinado}
           <div class="contador" data-fecha="${libro.fecha}">Cargando...</div>
         `;
 
@@ -117,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (diferencia <= 0) {
           contador.textContent = '¡Disponible!';
-          link.href = link.dataset.href;
+          link.setAttribute('href', link.dataset.href || link.getAttribute('href'));
           link.style.pointerEvents = 'auto';
           link.style.cursor = 'pointer';
           return;
