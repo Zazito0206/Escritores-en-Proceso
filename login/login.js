@@ -15,8 +15,8 @@ if (!firebase.apps.length) {
 
 const auth = firebase.auth();
 
-// Login con correo y contraseña
 document.addEventListener('DOMContentLoaded', () => {
+  // Login con correo y contraseña
   const loginForm = document.getElementById('login-form');
   if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
@@ -66,4 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
   }
+
+  // Verificación por si el usuario ya está autenticado
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      // Si ya está logueado, redirigimos
+      window.location.href = '/index.html';
+    }
+  });
 });
