@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Escritores en Proceso</title>
   <link rel="icon" href="/images/logo.png">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <!-- <link rel="manifest" href="manifest.json"> --> <!-- Comentado para evitar error 404 -->
@@ -28,12 +29,24 @@
     <a href="sobre-nosotros/index.html">Sobre Nosotros</a>
     <a href="/solicitud/solicitud.html">¿Quieres subir tu libro?</a>
     <a href="/contacto/contacto.html">Contáctanos</a>
-    <div id="auth-container">
-     <button id="login-btn">Iniciar sesión</button>
-     <img id="user-photo" style="display: none; width: 40px; height: 40px; border-radius: 50%;" />
-    </div>
-    <button id="toggle-dark-mode" aria-label="Alternar modo oscuro">🌓</button>
+<div id="auth-container">
+  <button id="login-btn">Iniciar sesión</button>
+  <img id="user-photo" style="display: none; width: 40px; height: 40px; border-radius: 50%;" />
+  <div id="user-dropdown" class="dropdown hidden">
+    <a href="/perfil/index.html">
+      <i class="fas fa-user"></i> Perfil
+    </a>
+    <a href="/notificaciones/index.html">
+      <i class="fas fa-bell"></i> Notificaciones
+    </a>
+    <button id="dropdown-dark-mode">
+      <i class="fas fa-moon"></i> Modo oscuro
+    </button>
+    <button id="logout-btn">
+      <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+    </button>
   </div>
+</div>
   <div id="resultadosBusqueda" class="resultados-busqueda"></div>
 </nav>
 
