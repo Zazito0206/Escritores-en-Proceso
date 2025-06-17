@@ -1,14 +1,17 @@
 // --- Configuración e inicialización de Firebase ---
 const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "TU_AUTH_DOMAIN",
+  apiKey: "AIzaSyCxyeiuOBCTwY1-Avq5TfOEa7HePsb2s9A",
+  authDomain: "escritores-en-proceso-ep.firebaseapp.com",
   projectId: "escritores-en-proceso-ep",
-  storageBucket: "TU_BUCKET",
-  messagingSenderId: "TU_SENDER_ID",
-  appId: "TU_APP_ID"
+  storageBucket: "escritores-en-proceso-ep.appspot.com",
+  messagingSenderId: "1068751834388",
+  appId: "1:1068751834388:web:2cc1b82d4e15db47970601"
 };
 
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+
 // Puedes usar luego firebase.auth() y firebase.firestore() si lo necesitas
 
 document.addEventListener('DOMContentLoaded', () => {
