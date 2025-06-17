@@ -1,52 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Escritores en Proceso</title>
-    <link rel="icon" href="/images/logo.png">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" /> <!-- Enlace al archivo CSS -->
-    <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Escritores en Proceso</title>
+  <link rel="icon" href="/images/logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json">
 </head>
 <body>
 
+<!-- Banner beta -->
 <aside id="beta-banner" aria-label="Aviso importante" class="beta-banner">
   <p><strong>¿Has encontrado un error o tienes alguna sugerencia?</strong></p>
-  <p>
-    <a href="/contacto/contacto.html"><strong>Infórmanos aquí</strong></a>, estaremos encantados de mejorar contigo.
-  </p>
+  <p><a href="/contacto/contacto.html"><strong>Infórmanos aquí</strong></a>, estaremos encantados de mejorar contigo.</p>
   <button id="close-banner" aria-label="Cerrar aviso">&times;</button>
 </aside>
 
-
+<!-- NAV -->
 <nav>
-    <a href="index.html">
-        <img src="images/logo.png" alt="Escritores en Proceso" class="logo-img" />
-    </a>
-    <div class="nav-links">
-        <a href="index.html" class="activo">Inicio</a>
-        <a href="sobre-nosotros/index.html">Sobre Nosotros</a>
-        <a href="/solicitud/solicitud.html">¿Quieres subir tu libro?</a>
-        <a href="/contacto/contacto.html">Contactanos</a>
-        <!-- Botón visible solo si NO ha iniciado sesión -->
-        <a href="/login/login.html" id="btn-login" class="btn-login">Iniciar sesión</a>
+  <a href="index.html">
+    <img src="images/logo.png" alt="Escritores en Proceso" class="logo-img" />
+  </a>
 
-        <!-- Contenedor del usuario logueado -->
-        <div id="user-info" class="user-info" style="display: none;">
-          <img id="user-photo" class="user-photo" src="" alt="Usuario" />
-        </div>
+  <div class="nav-links">
+    <a href="index.html" class="activo">Inicio</a>
+    <a href="sobre-nosotros/index.html">Sobre Nosotros</a>
+    <a href="/solicitud/solicitud.html">¿Quieres subir tu libro?</a>
+    <a href="/contacto/contacto.html">Contáctanos</a>
+    <a href="/login/login.html" id="btn-login" class="btn-login">Iniciar sesión</a>
+    <button id="toggle-dark-mode" aria-label="Alternar modo oscuro">🌓</button>
+<div id="user-info" class="user-info" style="display: none;">
+  <img id="user-photo" class="user-photo" src="" alt="Usuario" />
+</div>
+</div>
 
-
-        <button id="toggle-dark-mode" aria-label="Alternar modo oscuro">🌓</button>
-    </div>
-    <!-- 🔍 Barra de búsqueda eliminada temporalmente -->
-
-    <!-- 🔍 Contenedor de resultados debajo del buscador -->
-    <div id="resultadosBusqueda" class="resultados-busqueda"></div>
-
-
+  <!-- Contenedor de resultados de búsqueda (si se usa en el futuro) -->
+  <div id="resultadosBusqueda" class="resultados-busqueda"></div>
 </nav>
+
+<!-- Carrusel: Recientes -->
 <section class="libros-carrusel" id="recientes">
   <h3>Libros Recientes</h3>
   <p class="subtitulo-carrusel">Los títulos más nuevos añadidos por nuestros escritores.</p>
@@ -60,26 +55,21 @@
   <div class="indicadores" id="indicadores-recientes"></div>
 </section>
 
-<div id="carousel-recientes" class="carousel-container">
-  <!-- Aquí se agregan libros dinámicamente -->
-</div>
-
-<div id="carrusel-proximamente-container">
-  <section class="libros-carrusel" id="proximamente">
-    <h3>Libros Próximamente</h3>
-    <p class="subtitulo-carrusel">Selección especial de libros que estarán disponibles pronto.</p>
-    <div class="contenedor-principal">
-      <button class="flecha-izquierda" id="izquierda-proximamente">&lt;</button>
-      <div class="contenedor-carousel">
-        <div class="carousel" id="carousel-proximamente"></div>
-      </div>
-      <button class="flecha-derecha" id="derecha-proximamente">&gt;</button>
+<!-- Carrusel: Próximamente -->
+<section class="libros-carrusel" id="proximamente">
+  <h3>Libros Próximamente</h3>
+  <p class="subtitulo-carrusel">Selección especial de libros que estarán disponibles pronto.</p>
+  <div class="contenedor-principal">
+    <button class="flecha-izquierda" id="izquierda-proximamente">&lt;</button>
+    <div class="contenedor-carousel">
+      <div class="carousel" id="carousel-proximamente"></div>
     </div>
-    <div class="indicadores" id="indicadores-proximamente"></div>
-  </section>
-</div>
+    <button class="flecha-derecha" id="derecha-proximamente">&gt;</button>
+  </div>
+  <div class="indicadores" id="indicadores-proximamente"></div>
+</section>
 
-
+<!-- Carrusel: Populares -->
 <section class="libros-carrusel" id="populares">
   <h3>Libros Populares</h3>
   <p class="subtitulo-carrusel">Los libros que más han captado la atención de nuestra comunidad.</p>
@@ -93,9 +83,11 @@
   <div class="indicadores" id="indicadores-populares"></div>
 </section>
 
+<!-- Firebase SDKs (Compat para evitar errores) -->
 <script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-auth-compat.js"></script>
 
+<!-- Scripts -->
 <script src="proximos/proximos.js" defer></script>
 <script src="main.js" defer></script>
 </body>
