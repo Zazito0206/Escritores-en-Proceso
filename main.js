@@ -1,17 +1,29 @@
+// --- Configuración e inicialización de Firebase ---
+const firebaseConfig = {
+  apiKey: "TU_API_KEY",
+  authDomain: "TU_AUTH_DOMAIN",
+  projectId: "escritores-en-proceso-ep",
+  storageBucket: "TU_BUCKET",
+  messagingSenderId: "TU_SENDER_ID",
+  appId: "TU_APP_ID"
+};
+
+firebase.initializeApp(firebaseConfig);
+// Puedes usar luego firebase.auth() y firebase.firestore() si lo necesitas
+
 document.addEventListener('DOMContentLoaded', () => {
 
-// --- Banner con cierre temporal cada 30 minutos ---
-const banner = document.getElementById('beta-banner');
-const closeBtn = document.getElementById('close-banner');
-const storageKey = 'betaBannerClosedAt';
-const hideDuration = 30 * 60 * 1000; // 30 minutos en ms
-
+  // --- Banner con cierre temporal cada 30 minutos ---
+  const banner = document.getElementById('beta-banner');
+  const closeBtn = document.getElementById('close-banner');
+  const storageKey = 'betaBannerClosedAt';
+  const hideDuration = 30 * 60 * 1000; // 30 minutos en ms
 
   function fadeIn(element) {
     element.style.opacity = 0;
     element.style.display = 'block';
     let last = +new Date();
-    const tick = function() {
+    const tick = function () {
       element.style.opacity = +element.style.opacity + (new Date() - last) / 400;
       last = +new Date();
       if (+element.style.opacity < 1) {
@@ -24,7 +36,7 @@ const hideDuration = 30 * 60 * 1000; // 30 minutos en ms
   function fadeOut(element, callback) {
     element.style.opacity = 1;
     let last = +new Date();
-    const tick = function() {
+    const tick = function () {
       element.style.opacity = +element.style.opacity - (new Date() - last) / 400;
       last = +new Date();
       if (+element.style.opacity > 0) {
@@ -189,5 +201,4 @@ const hideDuration = 30 * 60 * 1000; // 30 minutos en ms
   // --- Crear carruseles para géneros que quieras mostrar ---
   crearCarrusel('recientes');
   crearCarrusel('populares');
-
 });
