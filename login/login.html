@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Iniciar Sesión</title>
+  <link rel="stylesheet" href="/login/login.css" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <main class="login-container">
+    <h1>Iniciar Sesión</h1>
+
+    <form id="login-form">
+      <input type="email" id="email" placeholder="Correo electrónico" required />
+      <input type="password" id="password" placeholder="Contraseña" required />
+      <button type="submit">Iniciar sesión</button>
+    </form>
+
+    <div class="divider">O inicia con</div>
+
+    <div class="social-login">
+      <button type="button" id="google-login">
+        <img src="/images/google-icon.png" alt="Google" /> Google
+      </button>
+      <button type="button" id="facebook-login">
+        <img src="/images/facebook-icon.png" alt="Facebook" /> Facebook
+      </button>
+    </div>
+
+    <p>¿No tienes cuenta? <a href="#" id="registrarse">Regístrate aquí</a></p>
+  </main>
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-auth-compat.js"></script>
+
+<!-- Script de inicio de sesión -->
+<script src="/login/login.js"></script>
+
+</body>
+</html>
