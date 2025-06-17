@@ -181,14 +181,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Mostrar u ocultar el botón según si hay sesión
   auth.onAuthStateChanged((user) => {
+    const userMenuContainer = document.getElementById('user-menu-container');
     if (user) {
       loginBtn.style.display = "none";
-      userPhoto.style.display = "inline-block";
       userPhoto.src = user.photoURL;
+      userMenuContainer.style.display = "inline-block";
     } else {
       loginBtn.style.display = "inline-block";
-      userPhoto.style.display = "none";
+      userMenuContainer.style.display = "none";
     }
+  });
+
+  // --- Dropdown usuario ---
+  const userMenuContainer = document.getElementById('user-menu-container');
+  const userDropdown = document.getElementById('user-dropdown');
+  const logoutBtn = document.getElementById('logout-btn');
+  const dropdownDarkModeBtn = document.getElementById('dropdown-dark-mode');
+
+  userPhoto?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    userDropdown.style.display = (userDropdown.style.display === 'block') ? 'none' : 'block';
+  });
+
+  document.addEventListener('click', (e) => {
+    if (userDropdown.style.display === 'block' && !userMenuContainer.contains(e.target)) {
+      userDropdown.style.display = 'none';
+    }
+  });
+
+  logoutBtn?.addEventListener('click', () => {
+    auth.signOut().then(() => {
+      location.reload();
+    }).catch(error => {
+      console.error("Error al cerrar sesión:", error);
+    });
+  });
+
+  dropdownDarkModeBtn?.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    localStorage.setItem('dark-mode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
   });
 
 });
