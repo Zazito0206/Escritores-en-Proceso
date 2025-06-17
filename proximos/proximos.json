@@ -2,7 +2,19 @@
   {
     "slug": "cuando-la-oscuridad-llama",
     "cover": "images/cuando-la-oscuridad-llama.png",
-    "fecha": "2025-06-19T23:00:00",
-    "estado": "proximamente"
+    "fecha": "2025-06-14T23:00:00",
+    "estado": "proximamente",
+    "tipo": "capitulo",
+    "patrocinado": true,
+    "url": "/libros/cuando-la-oscuridad-llama/capitulos/cap1.html"
+  },
+  {
+    "slug": "",
+    "cover": "",
+    "fecha": "2025-06-20T23:00:00",
+    "estado": "proximamente",
+    "tipo": "capitulo",
+    "patrocinado": false,
+    "url": "/libros/el-capitulo-perdido/capitulos/cap1.html"
   }
 ]
