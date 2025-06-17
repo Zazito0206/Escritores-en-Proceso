@@ -71,11 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Función para crear slugs URL-friendly ---
+  // --- Función para slug URL-friendly ---
   function slugify(text) {
     return text.toString().toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
       .replace(/ñ/g, 'n')
       .replace(/\s+/g, '-')
       .replace(/[^\w\-]+/g, '')
@@ -83,13 +82,12 @@ document.addEventListener('DOMContentLoaded', () => {
       .trim();
   }
 
-  // --- Carruseles por género ---
+  // --- Carrusel de libros ---
   function crearCarrusel(genero) {
     const carousel = document.getElementById(`carousel-${genero}`);
     const indicadores = document.getElementById(`indicadores-${genero}`);
     const flechaIzquierda = document.getElementById(`izquierda-${genero}`);
     const flechaDerecha = document.getElementById(`derecha-${genero}`);
-
     let librosGenero = [];
     let indiceActual = 0;
 
@@ -97,63 +95,49 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(res => res.json())
       .then(data => {
         librosGenero = data.books.filter(libro => libro.genres.includes(genero));
-
         librosGenero.forEach(libro => {
           const link = document.createElement('a');
           link.classList.add('libro');
           link.setAttribute('title', libro.title);
-
           const slug = slugify(libro.title);
           link.href = `/libros/${slug}/info/index.html`;
-
           link.innerHTML = `
             <img src="${libro.cover}" alt="Portada de ${libro.title}" />
             <h4>${libro.title}</h4>
             <span class="estado-libro">${
-              {
-                'completo': 'Completo',
-                'en-progreso': 'En progreso',
-                'proximamente': 'Próximamente'
-              }[libro.estado] || 'Desconocido'
+              { 'completo': 'Completo', 'en-progreso': 'En progreso', 'proximamente': 'Próximamente' }[libro.estado] || 'Desconocido'
             }</span>
             ${libro.patrocinado ? '<div class="badge-logo"><img src="/images/logo-patrocinado.png" alt="Libro patrocinado" /></div>' : ''}
           `;
-
           carousel.appendChild(link);
         });
-
         crearIndicadores();
         actualizarIndicador();
       });
 
-    flechaDerecha?.addEventListener('click', () => moverCarrusel('siguiente'));
-    flechaIzquierda?.addEventListener('click', () => moverCarrusel('anterior'));
+    flechaDerecha.addEventListener('click', () => moverCarrusel('siguiente'));
+    flechaIzquierda.addEventListener('click', () => moverCarrusel('anterior'));
 
     function moverCarrusel(direccion) {
-      const anchoContenedor = carousel.parentElement.offsetWidth;
-      if (direccion === 'siguiente') {
-        carousel.parentElement.scrollLeft += anchoContenedor;
-        indiceActual++;
-      } else {
-        carousel.parentElement.scrollLeft -= anchoContenedor;
-        indiceActual--;
-      }
+      const ancho = carousel.parentElement.offsetWidth;
+      carousel.parentElement.scrollLeft += (direccion === 'siguiente' ? 1 : -1) * ancho;
+      indiceActual += (direccion === 'siguiente' ? 1 : -1);
       actualizarIndicador();
     }
 
     function crearIndicadores() {
       indicadores.innerHTML = '';
-      const items = carousel.querySelectorAll('.libro');
-      const paginas = Math.ceil(items.length / 5);
+      const total = carousel.querySelectorAll('.libro').length;
+      const paginas = Math.ceil(total / 5);
       for (let i = 0; i < paginas; i++) {
-        const boton = document.createElement('button');
-        if (i === 0) boton.classList.add('activo');
-        boton.addEventListener('click', () => {
+        const btn = document.createElement('button');
+        if (i === 0) btn.classList.add('activo');
+        btn.addEventListener('click', () => {
           carousel.parentElement.scrollLeft = i * carousel.parentElement.offsetWidth;
           indiceActual = i;
           actualizarIndicador();
         });
-        indicadores.appendChild(boton);
+        indicadores.appendChild(btn);
       }
     }
 
@@ -171,9 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
   const savedMode = localStorage.getItem('dark-mode');
 
-  if (savedMode === 'enabled') {
-    body.classList.add('dark-mode');
-  } else if (!savedMode && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  if (savedMode === 'enabled' || (!savedMode && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     body.classList.add('dark-mode');
     localStorage.setItem('dark-mode', 'enabled');
   }
@@ -183,27 +165,29 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('dark-mode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
   });
 
-  // --- Carruseles disponibles ---
+  // --- Crear carruseles ---
   crearCarrusel('recientes');
   crearCarrusel('populares');
 
-  // --- Autenticación y UI dinámico ---
+  // --- Autenticación ---
   const loginBtn = document.getElementById('login-btn');
   const userPhoto = document.getElementById('user-photo');
-
   const auth = firebase.auth();
 
+  // Redirigir a login.html al hacer clic en el botón
+  loginBtn?.addEventListener('click', () => {
+    window.location.href = "/login/login.html";
+  });
+
+  // Mostrar u ocultar el botón según si hay sesión
   auth.onAuthStateChanged((user) => {
     if (user) {
-      if (loginBtn) loginBtn.style.display = "none";
-      if (userPhoto) {
-        userPhoto.src = user.photoURL || "/images/usuario-default.png";
-        userPhoto.alt = user.displayName || "Usuario";
-        userPhoto.style.display = "inline-block";
-      }
+      loginBtn.style.display = "none";
+      userPhoto.style.display = "inline-block";
+      userPhoto.src = user.photoURL;
     } else {
-      if (loginBtn) loginBtn.style.display = "inline-block";
-      if (userPhoto) userPhoto.style.display = "none";
+      loginBtn.style.display = "inline-block";
+      userPhoto.style.display = "none";
     }
   });
 
