@@ -201,4 +201,35 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Crear carruseles para géneros que quieras mostrar ---
   crearCarrusel('recientes');
   crearCarrusel('populares');
+
+
+  // --- Autenticación con Google o Facebook ---
+  const loginBtn = document.getElementById('login-btn');
+  const userPhoto = document.getElementById('user-photo');
+
+  const auth = firebase.auth();
+  const providerGoogle = new firebase.auth.GoogleAuthProvider();
+  const providerFacebook = new firebase.auth.FacebookAuthProvider();
+
+  loginBtn?.addEventListener('click', () => {
+    auth.signInWithPopup(providerGoogle)
+      .then((result) => {
+        window.location.href = "/";
+      })
+      .catch((error) => {
+        console.error("Error al iniciar sesión:", error);
+      });
+  });
+
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      loginBtn.style.display = "none";
+      userPhoto.style.display = "inline-block";
+      userPhoto.src = user.photoURL;
+    } else {
+      loginBtn.style.display = "inline-block";
+      userPhoto.style.display = "none";
+    }
+  });
+
 });
