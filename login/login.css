@@ -1,6 +1,6 @@
 body {
   font-family: 'Montserrat', sans-serif;
-  background-color: #f0f2f5;
+  background-color: #121212;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,7 +9,7 @@ body {
 }
 
 .login-container {
-  background: white;
+  background: #121212;
   padding: 2.5rem;
   border-radius: 12px;
   border: 2px solid #ff6f3c;
