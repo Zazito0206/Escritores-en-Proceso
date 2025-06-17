@@ -1,16 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // --- Banner con cierre temporal cada 30 minutos ---
-  const banner = document.getElementById('beta-banner');
-  const closeBtn = document.getElementById('close-banner');
-  const storageKey = 'betaBannerClosedAt';
-  const hideDuration = 30 * 60 * 1000; // 30 minutos en ms
+// --- Banner con cierre temporal cada 30 minutos ---
+const banner = document.getElementById('beta-banner');
+const closeBtn = document.getElementById('close-banner');
+const storageKey = 'betaBannerClosedAt';
+const hideDuration = 30 * 60 * 1000; // 30 minutos en ms
+
 
   function fadeIn(element) {
     element.style.opacity = 0;
     element.style.display = 'block';
     let last = +new Date();
-    const tick = function () {
+    const tick = function() {
       element.style.opacity = +element.style.opacity + (new Date() - last) / 400;
       last = +new Date();
       if (+element.style.opacity < 1) {
@@ -23,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function fadeOut(element, callback) {
     element.style.opacity = 1;
     let last = +new Date();
-    const tick = function () {
+    const tick = function() {
       element.style.opacity = +element.style.opacity - (new Date() - last) / 400;
       last = +new Date();
       if (+element.style.opacity > 0) {
@@ -72,10 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Función que crea un carrusel para un género
   function crearCarrusel(genero) {
-    const carousel = document.getElementById(`carousel-${genero}`);
-    const indicadores = document.getElementById(`indicadores-${genero}`);
-    const flechaIzquierda = document.getElementById(`izquierda-${genero}`);
-    const flechaDerecha = document.getElementById(`derecha-${genero}`);
+    const carousel = document.getElementById(carousel-${genero});
+    const indicadores = document.getElementById(indicadores-${genero});
+    const flechaIzquierda = document.getElementById(izquierda-${genero});
+    const flechaDerecha = document.getElementById(derecha-${genero});
 
     let librosGenero = [];
     let indiceActual = 0;
@@ -91,9 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
           link.setAttribute('title', libro.title);
 
           const slug = slugify(libro.title);
-          link.href = `/libros/${slug}/info/index.html`;
+          link.href = /libros/${slug}/info/index.html;
 
-          link.innerHTML = `
+          link.innerHTML = 
             <img src="${libro.cover}" alt="Portada de ${libro.title}" />
             <h4>${libro.title}</h4>
             <span class="estado-libro">${
@@ -104,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
               }[libro.estado] || 'Desconocido'
             }</span>
             ${libro.patrocinado ? '<div class="badge-logo"><img src="/images/logo-patrocinado.png" alt="Libro patrocinado" /></div>' : ''}
-          `;
+          ;
 
           carousel.appendChild(link);
         });
@@ -185,44 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleBtn.addEventListener('click', toggleDarkMode);
   }
 
-  // --- Crear carruseles para géneros ---
+  // --- Crear carruseles para géneros que quieras mostrar ---
   crearCarrusel('recientes');
   crearCarrusel('populares');
-
-  // --- Firebase Auth: mostrar botón login o avatar ---
-  const firebaseConfig = {
-    apiKey: "AIzaSyCxyeiuOBCTwY1-Avq5TfOEa7HePsb2s9A",
-    authDomain: "escritores-en-proceso-ep.firebaseapp.com",
-    projectId: "escritores-en-proceso-ep",
-    storageBucket: "escritores-en-proceso-ep.appspot.com",
-    messagingSenderId: "1068751834388",
-    appId: "1:1068751834388:web:2cc1b82d4e15db47970601"
-  };
-
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-
-  auth.onAuthStateChanged(user => {
-    const btnLogin = document.getElementById("btn-login");
-    const userInfo = document.getElementById("user-info");
-    const userPhoto = document.getElementById("user-photo");
-
-    if (user) {
-      if (btnLogin) btnLogin.style.display = "none";
-      if (userInfo) userInfo.style.display = "flex";
-
-      if (user.photoURL) {
-        userPhoto.src = user.photoURL;
-      } else {
-        const initials = user.displayName
-          ? user.displayName.split(' ').map(n => n[0]).join('').toUpperCase()
-          : user.email[0].toUpperCase();
-        userPhoto.src = `https://via.placeholder.com/40x40.png?text=${initials}`;
-      }
-    } else {
-      if (btnLogin) btnLogin.style.display = "inline-block";
-      if (userInfo) userInfo.style.display = "none";
-    }
-  });
 
 });
