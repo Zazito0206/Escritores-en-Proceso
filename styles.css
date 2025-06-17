@@ -517,34 +517,3 @@ body.dark-mode {
   display: none !important;
 }
 
-/* --- Login --- */
-.btn-login {
-  background-color: #0a3d62;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.2s ease;
-}
-
-.btn-login:hover {
-  background-color: #074172;
-}
-
-/* --- Usuario login --- */
-.user-info {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.user-photo {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #0a3d62;
-}
-
-
