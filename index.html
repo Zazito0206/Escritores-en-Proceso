@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Escritores en Proceso</title>
-    <link rel="icon" href="/images/logo.png">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" /> <!-- Enlace al archivo CSS -->
-    <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Escritores en Proceso</title>
+  <link rel="icon" href="/images/logo.png">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <!-- <link rel="manifest" href="manifest.json"> --> <!-- Comentado para evitar error 404 -->
 </head>
 <body>
 
@@ -20,23 +20,19 @@
 </aside>
 
 <nav>
-    <a href="index.html">
-        <img src="images/logo.png" alt="Escritores en Proceso" class="logo-img" />
-    </a>
-    <div class="nav-links">
-        <a href="index.html" class="activo">Inicio</a>
-        <a href="sobre-nosotros/index.html">Sobre Nosotros</a>
-        <a href="/solicitud/solicitud.html">¿Quieres subir tu libro?</a>
-        <a href="/contacto/contacto.html">Contactanos</a>
-        <button id="toggle-dark-mode" aria-label="Alternar modo oscuro">🌓</button>
-    </div>
-    <!-- 🔍 Barra de búsqueda eliminada temporalmente -->
-
-    <!-- 🔍 Contenedor de resultados debajo del buscador -->
-    <div id="resultadosBusqueda" class="resultados-busqueda"></div>
-
-
+  <a href="index.html">
+    <img src="images/logo.png" alt="Escritores en Proceso" class="logo-img" />
+  </a>
+  <div class="nav-links">
+    <a href="index.html" class="activo">Inicio</a>
+    <a href="sobre-nosotros/index.html">Sobre Nosotros</a>
+    <a href="/solicitud/solicitud.html">¿Quieres subir tu libro?</a>
+    <a href="/contacto/contacto.html">Contáctanos</a>
+    <button id="toggle-dark-mode" aria-label="Alternar modo oscuro">🌓</button>
+  </div>
+  <div id="resultadosBusqueda" class="resultados-busqueda"></div>
 </nav>
+
 <section class="libros-carrusel" id="recientes">
   <h3>Libros Recientes</h3>
   <p class="subtitulo-carrusel">Los títulos más nuevos añadidos por nuestros escritores.</p>
@@ -50,9 +46,7 @@
   <div class="indicadores" id="indicadores-recientes"></div>
 </section>
 
-<div id="carousel-recientes-container" class="carousel-container">
-  <!-- Aquí se agregan libros dinámicamente -->
-</div>
+<div id="carousel-recientes-container" class="carousel-container"></div>
 
 <div id="carrusel-proximamente-container">
   <section class="libros-carrusel" id="proximamente">
@@ -69,7 +63,6 @@
   </section>
 </div>
 
-
 <section class="libros-carrusel" id="populares">
   <h3>Libros Populares</h3>
   <p class="subtitulo-carrusel">Los libros que más han captado la atención de nuestra comunidad.</p>
@@ -83,8 +76,14 @@
   <div class="indicadores" id="indicadores-populares"></div>
 </section>
 
+<!-- Firebase SDKs (v9.23.0) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
 
+<!-- Scripts propios -->
 <script src="proximos/proximos.js" defer></script>
 <script src="main.js" defer></script>
+
 </body>
 </html>
