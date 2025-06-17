@@ -532,3 +532,19 @@ body.dark-mode {
   background-color: #074172;
 }
 
+/* --- Usuario login --- */
+.user-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.user-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #0a3d62;
+}
+
+
