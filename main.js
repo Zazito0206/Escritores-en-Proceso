@@ -13,7 +13,6 @@ if (!firebase.apps.length) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-
   // --- Banner con cierre temporal cada 30 minutos ---
   const banner = document.getElementById('beta-banner');
   const closeBtn = document.getElementById('close-banner');
@@ -172,6 +171,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- Autenticación ---
   const loginBtn = document.getElementById('login-btn');
   const userPhoto = document.getElementById('user-photo');
+  const dropdown = document.getElementById('user-dropdown');
+  const logoutBtn = document.getElementById('logout-btn');
+  const darkModeBtn = document.getElementById('dropdown-dark-mode');
   const auth = firebase.auth();
 
   // Redirigir a login.html al hacer clic en el botón
@@ -191,4 +193,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Mostrar/ocultar dropdown al hacer clic en user-photo
+  userPhoto.addEventListener('click', () => {
+    dropdown.classList.toggle('hidden');
+  });
+
+  // Cerrar sesión
+  logoutBtn.addEventListener('click', () => {
+    firebase.auth().signOut().then(() => {
+      window.location.reload();
+    });
+  });
+
+  // Alternar modo oscuro desde el dropdown
+  darkModeBtn.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    localStorage.setItem('dark-mode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
+  });
+
+  // Cerrar dropdown al hacer clic fuera de él
+  document.addEventListener('click', (event) => {
+    if (!dropdown.contains(event.target) && event.target !== userPhoto) {
+      dropdown.classList.add('hidden');
+    }
+  });
 });
