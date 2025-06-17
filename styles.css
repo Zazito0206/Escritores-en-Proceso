@@ -517,3 +517,44 @@ body.dark-mode {
   display: none !important;
 }
 
+/* --- Inicio de Sesión --- */
+#login-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #1a73e8;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  font-size: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+#login-btn:hover {
+  background-color: #0f5dd4;
+  transform: translateY(-1px);
+}
+
+#login-btn:active {
+  background-color: #0b49ab;
+  transform: translateY(0);
+}
+
+/* Imagen de usuario cuando ya está logueado */
+#user-photo {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 2px solid #1a73e8;
+  transition: transform 0.2s ease;
+}
+
+#user-photo:hover {
+  transform: scale(1.05);
+}
