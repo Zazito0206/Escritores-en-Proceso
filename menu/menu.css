@@ -21,12 +21,35 @@
   position: absolute;
   right: 0;
   top: 143%;
-  background-color: rgba(128, 128, 128, 0.1); /* Gris con 90% de transparencia */
+  background-color: #DDDDDD;
   border: 1px solid var(--color-nav-texto);
   border-radius: 6px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   z-index: 1000;
   min-width: 180px;
+}
+
+/* Estilo general del menú */
+.menu-links {
+  display: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  right: 0;
+  top: 143%;
+  background-color: #DDDDDD;
+  border: 1px solid var(--color-nav-texto);
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  z-index: 1000;
+  min-width: 180px;
+}
+/* Ajuste para modo oscuro */
+body.dark-mode .menu-links {
+  background-color: rgba(44, 44, 44, 0.9); /* Fondo oscuro con transparencia */
+  border: 1px solid var(--color-nav-texto); /* Bordes adaptados al modo oscuro */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Sombra más intensa */
 }
 
 .menu-links li a {
