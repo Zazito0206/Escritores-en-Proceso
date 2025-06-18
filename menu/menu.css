@@ -33,7 +33,7 @@
   display: block;
   padding: 10px 20px;
   text-decoration: none;
-  color: #DDDDDD; /* color del texto */
+  color: #000000; /* color del texto */
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -46,5 +46,10 @@
 /* Mostrar menú cuando está activo */
 .menu-hamburguesa.active .menu-links {
   display: block;
+}
+
+/* Ajuste para modo oscuro */
+body.dark-mode .menu-links li a {
+  color: #FFFFFF; /* Texto blanco en modo oscuro */
 }
 
