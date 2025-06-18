@@ -1,3 +1,4 @@
+
 /* VARIABLES PARA COLORES */
 :root {
   --color-fondo: #f6f6f6;
@@ -518,6 +519,14 @@ body.dark-mode {
 }
 
 /* --- Inicio de Sesión --- */
+nav #auth-container {
+  position: absolute;
+  right: 60px;
+  top: 4.4%;
+  transform: translateY(-50%);
+  z-index: 1; /* Asegúrate de que no bloquee otros elementos */
+}
+
 #login-btn {
   display: inline-block;
   padding: 10px 20px;
@@ -540,6 +549,20 @@ body.dark-mode {
 #login-btn:active {
   background-color: #0b49ab;
   transform: translateY(0);
+}
+
+#logout-btn {
+  cursor: pointer;
+  background-color: var(--color-nav-fondo);
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+}
+
+#logout-btn:hover {
+  background-color: var(--rojo-hover);
+  color: #fff;
+  border-radius: 4px;
 }
 
 /* Imagen de usuario cuando ya está logueado */
