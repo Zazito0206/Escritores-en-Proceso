@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,8 +9,7 @@
    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <!-- <link rel="manifest" href="manifest.json"> --> <!-- Comentado para evitar error 404 -->
-</head>
+  <link rel="stylesheet" href="menu/menu.css">
 <body>
 
 <aside id="beta-banner" aria-label="Aviso importante" class="beta-banner">
@@ -24,11 +24,6 @@
   <a href="index.html">
     <img src="images/logo.png" alt="Escritores en Proceso" class="logo-img" />
   </a>
-  <div class="nav-links">
-    <a href="index.html" class="activo">Inicio</a>
-    <a href="sobre-nosotros/index.html">Sobre Nosotros</a>
-    <a href="/solicitud/solicitud.html">¿Quieres subir tu libro?</a>
-    <a href="/contacto/contacto.html">Contáctanos</a>
 <div id="auth-container">
   <button id="login-btn">Iniciar sesión</button>
   <img id="user-photo" style="display: none; width: 40px; height: 40px; border-radius: 50%;" />
@@ -47,7 +42,20 @@
     </button>
   </div>
 </div>
-  <div id="resultadosBusqueda" class="resultados-busqueda"></div>
+<div class="menu-hamburguesa">
+  <button class="hamburguesa" aria-label="Abrir menú">
+    <i class="fas fa-bars"></i>
+  </button>
+  <ul class="menu-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="sobre-nosotros/index.html">Sobre nosotros</a></li>
+    <li><a href="solicitud/solicitud.html">Sube tu libro</a></li>
+    <li><a href="contacto/contacto.html">Contacto</a></li>
+    <li>
+  
+  </ul>
+</div>
+
 </nav>
 
 <section class="libros-carrusel" id="recientes">
@@ -102,6 +110,7 @@
 <!-- Scripts propios -->
 <script src="proximos/proximos.js" defer></script>
 <script src="main.js" defer></script>
+<script src="menu/menu.js" defer></script>
 
 </body>
 </html>
