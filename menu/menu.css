@@ -1,0 +1,50 @@
+.menu-hamburguesa {
+  position: relative;
+  display: inline-block;
+}
+
+/* Botón hamburguesa con color personalizado */
+.hamburguesa {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #ff6f3c; /* color del icono */
+}
+
+/* Estilo general del menú */
+.menu-links {
+  display: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  right: 0;
+  top: 143%;
+  background-color: rgba(128, 128, 128, 0.1); /* Gris con 90% de transparencia */
+  border: 1px solid var(--color-nav-texto);
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  z-index: 1000;
+  min-width: 180px;
+}
+
+.menu-links li a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #DDDDDD; /* color del texto */
+  font-family: 'Montserrat', sans-serif;
+}
+
+.menu-links li a:hover {
+  background-color: var(--rojo-hover);
+  color: #fff;
+  border-radius: 4px;
+}
+
+/* Mostrar menú cuando está activo */
+.menu-hamburguesa.active .menu-links {
+  display: block;
+}
+
