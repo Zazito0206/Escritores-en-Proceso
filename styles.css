@@ -605,7 +605,7 @@ nav #auth-container {
   position: absolute;
   top: 50px;
   right: 0;
-  background-color: rgba(128, 128, 128, 0.1); /* Gris con 90% de transparencia */
+  background-color: #DDDDDD;
   border: 1px solid var(--color-nav-texto);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -613,6 +613,13 @@ nav #auth-container {
   flex-direction: column;
   padding: 10px;
   z-index: 1000;
+}
+
+/* Ajuste para modo oscuro */
+body.dark-mode .dropdown {
+  background-color: rgba(44, 44, 44, 0.9); /* Fondo oscuro con transparencia */
+  border: 1px solid var(--color-nav-texto); /* Bordes adaptados al modo oscuro */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); /* Sombra más intensa */
 }
 
 .dropdown.hidden {
