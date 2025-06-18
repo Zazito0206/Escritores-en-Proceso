@@ -522,9 +522,27 @@ body.dark-mode {
 nav #auth-container {
   position: absolute;
   right: 60px;
-  top: 4.4%;
+  top: 4.9%;
   transform: translateY(-50%);
   z-index: 1; /* Asegúrate de que no bloquee otros elementos */
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  nav #auth-container {
+    right: 60px; /* Reduce el espacio desde el borde derecho */
+    top: 4%; /* Ajusta la posición vertical */
+    transform: none; /* Elimina el centrado si no es necesario */
+  }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 480px) {
+  nav #auth-container {
+    right: 50px; /* Reduce aún más el espacio desde el borde derecho */
+    top: 3%; /* Ajusta la posición vertical */
+    font-size: 14px; /* Opcional: ajusta el tamaño del texto o elementos */
+  }
 }
 
 #login-btn {
@@ -553,7 +571,7 @@ nav #auth-container {
 
 #logout-btn {
   cursor: pointer;
-  background-color: var(--color-nav-fondo);
+  background-color: rgba(44, 44, 44, 0.1); /* Gris con 90% de transparencia */
   border: none;
   padding: 10px;
   font-size: 14px;
@@ -587,7 +605,7 @@ nav #auth-container {
   position: absolute;
   top: 50px;
   right: 0;
-  background-color: var(--color-nav-fondo);
+  background-color: rgba(128, 128, 128, 0.1); /* Gris con 90% de transparencia */
   border: 1px solid var(--color-nav-texto);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -626,3 +644,4 @@ nav #auth-container {
 .dropdown i {
   font-size: 1rem; /* Tamaño del ícono */
 }
+
