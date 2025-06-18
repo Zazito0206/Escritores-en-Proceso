@@ -540,7 +540,7 @@ nav #auth-container {
 @media (max-width: 480px) {
   nav #auth-container {
     right: 50px; /* Reduce aún más el espacio desde el borde derecho */
-    top: 2.6%; /* Ajusta la posición vertical */
+    top: 2.4%; /* Ajusta la posición vertical */
     font-size: 14px; /* Opcional: ajusta el tamaño del texto o elementos */
   }
 }
